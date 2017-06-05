@@ -1,0 +1,7 @@
+<svg xmlns:svg="http://www.w3.org/2000/svg" id="root" height="100%" appZoom #d3zoom="appZoom">
+	<g [attr.transform]="(d3zoom.observables.zoomTransform | async).toString()">
+		<circle cx="100" cy="100" r="100"/>
+	</g>
+	<g id="xAxisG" [appXAxis]="d3zoom.observables.zoomTransform"></g>
+	<g id="yAxisG" [appYAxis]="d3zoom.observables.zoomTransform"></g>
+</svg>

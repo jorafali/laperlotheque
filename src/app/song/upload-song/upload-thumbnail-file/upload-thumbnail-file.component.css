@@ -1,0 +1,16 @@
+#editThumbnailButton {
+		background-color: #fffc75;
+		position: absolute;
+		font-size: 20px;
+		line-height: 25px;
+		bottom: 3px;
+		right: 3px;
+		height: 25px;
+		text-align: center;
+	}
+	#editThumbnailButton:hover {
+		cursor: pointer;
+	}
+	input[type="file"]{
+		display: none;
+	}

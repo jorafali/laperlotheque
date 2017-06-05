@@ -1,0 +1,24 @@
+<div>
+	<h4>Choose a file to Upload</h4>
+</div>
+<form>
+	<div class="form-group">
+		<label for="audioFile">Upload track file
+			<input id="audioFile" class="form-control"
+				[(ngModel)]="audioFileInput"
+				name="audioFileInput"
+				accept=".mp3, .m4a" 
+				type='file'
+				(change)="onFileChange($event)">
+		</label>
+	</div>
+	<div>
+		<button class="btn btn-lg btn-outline-primary"
+				type="button" [disabled]="!audioFormValid"
+				(click)="submitUpload()">Upload</button>
+		<button class="btn btn-lg btn-outline-primary"
+				type="button"
+				(click)="cancelUpload()">Cancel</button>
+	</div>
+	<div>{{audioFile}}</div>
+</form>	

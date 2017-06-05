@@ -1,0 +1,22 @@
+{
+  "/api/songs": {
+    "tgt":"http://laperlotheque.net",
+    "target":"http://localhost:3000",
+    "secure": false
+  },
+  "/auth/": {
+    "tgt":"http://laperlotheque.net",
+    "target":"http://localhost:3000",
+    "secure": false
+  },
+  "/api/accounts": {
+    "tgt":"http://laperlotheque.net",
+    "target":"http://localhost:3000",
+    "secure": false
+  },
+  "/img": {
+    "tgt":"http://laperlotheque.net",
+    "target":"http://localhost:3000",
+    "secure": false
+  }
+}

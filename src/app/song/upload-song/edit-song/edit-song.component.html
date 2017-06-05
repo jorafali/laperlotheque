@@ -1,0 +1,42 @@
+<div id="thumbnail"
+	[style.background-image]="'url('+song.thumbnailUrl+')'"
+	[style.background-size]="'contain'"
+	[style.background-position]="'center'"
+	[style.background-repeat]="'no-repeat'">
+	<app-upload-thumbnail-file></app-upload-thumbnail-file>
+</div>
+<div>
+	<app-upload-audio-file [forNewSong]="false"></app-upload-audio-file>
+</div>
+<form #requiredForm="ngForm"
+	class="form-group">
+	<label for="titleInput">Title</label>
+	<input id="titleInput" class="form-control" type="text"
+		required 
+		[(ngModel)]="song.title"
+		name="title">
+	<label for="artistInput">Artist</label>
+	<input id="artistInput" class="form-control" type="text"
+		required 
+		[(ngModel)]="song.artist"
+		name="artist">
+	<label for="descriptionTextarea">Description</label>
+	<textarea id="descriptionTextarea" class="form-control"
+		type="text" placeholder="..."
+		name="description" [(ngModel)]="song.description">
+	</textarea>
+	<label for="tagsInput">Tags</label>
+	<input type="text" class="form-control"
+		[(ngModel)]="song.tags"
+		name="tags">
+</form>
+<div>
+	<button class="btn btn-lg btn-outline-primary" type="button"
+		(click)="updateSongAttributes()"
+		[disabled]="!requiredForm.valid">Save</button>
+	<button class="btn btn-lg btn-outline-primary" type="button" [disabled]="!requiredForm.valid">Cancel</button>
+</div>
+<div>{{song.title}}</div>
+<div>{{song.artist}}</div>
+<pre>{{song.description}}</pre>
+<div>{{song.tags}}</div>

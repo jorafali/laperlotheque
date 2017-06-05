@@ -1,0 +1,60 @@
+<div id="playerContainer" class="flex-center">
+	<!-- Player main controls -->
+	<div id="mainPlayerControlContainer" class="flex-center">
+		<div [ngSwitch]="songPlaying.soundObject.paused"
+			class="flex-center">
+			<img id="play" class="icon" 
+				*ngSwitchCase="true"
+				(click)="play(songPlaying)"
+				src="./assets/SVG/yellow/play3.svg">
+			<img id="pause" class="icon" 
+				*ngSwitchCase="false"
+				(click)="pause()"
+				src="./assets/SVG/yellow/pause2.svg">
+		</div>
+	</div>
+	<!-- player song information -->
+	<div id="playerInfoContainer" class="flex-center">
+		<div id="song-title" 
+			class="flex-center">
+			{{songPlaying.title}}
+		</div>
+		<div id="song-artist" class="flex-center">
+			{{songPlaying.artist}}
+		</div>
+		<img *ngIf="songPlaying.thumbnailUrl" 
+			class ="img-fluid" 
+			src="{{songPlaying.thumbnailUrl}}">
+		<div id="song-progressContainer" class="flex-center">
+			<div id="song-position" class="flex-center">
+				{{songPlaying.humanReadable.position}}
+			</div>
+			<div id="song-progress-barContainer" class=""
+				(click)="jumpToPosition($event)">
+				<div id="song-progress-bar"
+					[style.width]="songPlaying.soundObject.position/songPlaying.soundObject.duration*100+'%'">
+				</div>
+			</div>
+			<div id="song-duration" class="flex-center">
+				{{songPlaying.humanReadable.duration}}
+			</div>			
+		</div>
+	</div>
+	<!-- player second set of controls -->
+	<div id="secondaryPlayerControlContainer" class="flex-center">
+		<!-- <div app-volume-slider class=""
+			[volume]="(songPlaying.soundObject.muted)?0:songPlaying.soundObject.volume"></div> -->
+		<div [ngSwitch]="songPlaying.soundObject.muted"
+			class=" ">
+			<img id="mute" class="icon" 
+				*ngSwitchCase="false"
+				(click)="toggleMute()"
+				src="./assets/SVG/volume-high.svg">
+			<img id="unmute" class="icon" 
+				*ngSwitchCase="true"
+				(click)="toggleMute()"
+				src="./assets/SVG/volume-mute.svg">
+		</div>
+	</div>
+
+</div>
