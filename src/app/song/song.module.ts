@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-import { PopupModule } from '../popup/popup.module';
+import { PopupModule } from '../../assets/lib/popup/popup.module';
 
 import { SongService, SongResolveService } from './song.service';
 import { MetricsService } from './metrics.service';

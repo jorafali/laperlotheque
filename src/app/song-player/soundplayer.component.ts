@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { PlayerService } from './player.service';
-import { PlaylistControlService } from './playlist-control.service';
+import { PlayerService } from '../../assets/lib/soundplayer/player.service';
+import { PlaylistControlService } from '../../assets/lib/soundplayer/playlist-control.service';
 import { Song } from '../song/song';
 
 @Component({

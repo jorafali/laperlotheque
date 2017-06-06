@@ -108,7 +108,7 @@ export class AuthService {
           return false;
         } else {
           acctdata = this.parseAccoutData(acctdata);
-          console.log('do set properties and stream new values :', acctdata)
+          // console.log('do set properties and stream new values :', acctdata)
           this.isLoggedInSubject.next(true);
           this.isAdminSubject.next(acctdata.isAdmin);
           this.accountLoggedInSubject.next(acctdata);

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { SongService } from '../song.service';
 import { Song } from '../song';
-import { PlaylistControlService } from '../../soundplayer/playlist-control.service'
+import { PlaylistControlService } from '../../../assets/lib/soundplayer/playlist-control.service'
 
 
 @Component({

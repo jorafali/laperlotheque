@@ -19,7 +19,7 @@ export class LoginButtonDirective implements OnInit {
   ngOnInit() {
   	this.authService.updateLoginStatus().subscribe(
   		success => {
-  			console.log('updated login status with :', success);
+  			// console.log('updated login status with :', success);
   		})
   }
 

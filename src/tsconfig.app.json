@@ -6,7 +6,8 @@
     "baseUrl": "",
     "types": [
       "d3",
-      "d3-zoom"
+      "d3-zoom",
+      "d3-hexbin"
     ]
   },
   "exclude": [

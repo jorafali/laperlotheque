@@ -37,7 +37,7 @@ export class SongService {
         	let aSong: Song = this.newSong(val);
         	resp.push(aSong);
         })
-        console.log(resp);
+        // console.log('fetched some songs',resp);
         return resp;
       })
     return observable;

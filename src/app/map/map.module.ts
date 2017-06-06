@@ -1,27 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MapComponent } from './map/map.component';
-import { ZoomDirective } from './zoom.directive';
-import { XAxisDirective } from './x-axis.directive';
-import { YAxisDirective } from './y-axis.directive';
+import { RouterModule, Routes } from '@angular/router';
 
 import { SongService } from '../song/song.service';
 
+// LIBS
+import { D3MapModule } from '../../assets/lib/map/map.module';
+import { LayoutHexagonalGridComponent } from './layout-hexagonal-grid/layout-hexagonal-grid.component';
+
+const mapRoutes: Routes = [
+  {
+    path: '',
+    component: LayoutHexagonalGridComponent
+  }
+]
+
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    D3MapModule,
+    RouterModule.forChild(mapRoutes)
   ],
   exports: [
   	MapComponent,
-  	ZoomDirective,
-  	XAxisDirective,
-  	YAxisDirective
+    LayoutHexagonalGridComponent
   ],
   declarations: [
-    MapComponent, 
-    ZoomDirective, 
-    XAxisDirective, 
-    YAxisDirective
+    MapComponent,
+    LayoutHexagonalGridComponent
   ],
   providers: [
     SongService

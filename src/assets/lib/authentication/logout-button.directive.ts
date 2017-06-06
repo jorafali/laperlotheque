@@ -10,7 +10,7 @@ export class LogoutButtonDirective {
   @HostListener('click') logout(){
 		this.authService.logout().subscribe(
 			success => {
-				console.log('logged out');
+				// console.log('logged out');
 				this.router.navigate(['', {outlets: {p: null}}])
 			});
 	};

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router' ;
-import { PlaylistControlService } from '../../soundplayer/playlist-control.service';
-import { PlayerService } from '../../soundplayer/player.service';
-import { AuthService } from '../../authentication/auth.service';
+import { PlaylistControlService } from '../../../assets/lib/soundplayer/playlist-control.service';
+import { PlayerService } from '../../../assets/lib/soundplayer/player.service';
+import { AuthService } from '../../../assets/lib/authentication/auth.service';
 import { Song } from '../song';
 
 

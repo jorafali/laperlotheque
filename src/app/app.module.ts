@@ -6,8 +6,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
 // Custom modules
-import { AuthenticationModule } from './authentication/authentication.module';
+// LIB
+import { AuthenticationModule } from '../assets/lib/authentication/authentication.module';
+import { D3MapModule } from '../assets/lib/map/map.module';
+
+// FEATURES
 import { MapModule } from './map/map.module';
+
 
 const appRoutes: Routes = [];
 
@@ -21,7 +26,10 @@ const appRoutes: Routes = [];
     HttpModule,
     RouterModule.forRoot(appRoutes),
     // custom moduels
+    // libs
     AuthenticationModule,
+    D3MapModule,
+    // features
     MapModule
   ],
   providers: [],

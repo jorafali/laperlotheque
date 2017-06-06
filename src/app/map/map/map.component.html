@@ -1,6 +1,7 @@
-<svg xmlns:svg="http://www.w3.org/2000/svg" id="root" height="100%" appZoom #d3zoom="appZoom">
+<svg xmlns:svg="http://www.w3.org/2000/svg"
+			xmlns:xhtml="http://www.w3.org/1999/xhtml" id="root" height="100%" appZoom #d3zoom="appZoom">
 	<g [attr.transform]="(d3zoom.observables.zoomTransform | async).toString()">
-		<circle cx="100" cy="100" r="100"/>
+		<xhtml:router-outlet></xhtml:router-outlet>
 	</g>
 	<g id="xAxisG" [appXAxis]="d3zoom.observables.zoomTransform"></g>
 	<g id="yAxisG" [appYAxis]="d3zoom.observables.zoomTransform"></g>

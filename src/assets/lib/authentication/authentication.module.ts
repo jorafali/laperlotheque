@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { PopupModule } from '../popup/popup.module';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
-import { AuthFacebookService } from './auth-facebook.service';
 import { AuthService } from './auth.service';
 import { LoginButtonDirective } from './login-button.directive';
 import { LogoutButtonDirective } from './logout-button.directive';
@@ -46,7 +45,6 @@ const authRoutes: Routes = [
       LoggingInComponent
     ],
   providers: [
-  		AuthFacebookService, 
   		AuthService,
   		CookieService
   	]
