@@ -1,4 +1,4 @@
-import { Directive, OnInit, Input, ElementRef } from '@angular/core';
+import { Directive, OnInit, AfterViewInit, Input, ElementRef } from '@angular/core';
 import { Selection, select, selection, ZoomTransform,
         scaleLinear as d3ScaleLinear,
         axisBottom } from 'd3';
@@ -8,7 +8,7 @@ import 'rxjs/add/operator/first';
 @Directive({
   selector: '[appXAxis]'
 })
-export class XAxisDirective implements OnInit {
+export class XAxisDirective implements OnInit, AfterViewInit {
 
 	@Input('appXAxis') private srcTransformObs: Observable<ZoomTransform>;
 	
@@ -22,25 +22,30 @@ export class XAxisDirective implements OnInit {
   constructor(private el: ElementRef) {
   	this.hostSvg = this.el.nativeElement;
   	this.hostSVGSelection = select(this.hostSvg);
+    console.log(this.el.nativeElement.parentElement.clientWidth)
+    console.log('width',this.hostSvg.parentElement.clientWidth);
+  }
 
-  	// create the xAxis with pixel/10(xScale) unit
+  ngOnInit(){
+  };
+
+  ngAfterViewInit(){
+    // create the xAxis with pixel/10(xScale) unit
     this.xScale = d3ScaleLinear()
       .domain([0, this.hostSvg.parentElement.clientWidth/10])
       .range([0, this.hostSvg.parentElement.clientWidth])
 
-  	// create xAxis with the rescaled scale
+    // create xAxis with the rescaled scale
     this.xAxis = axisBottom(this.xScale).ticks(4);
     this.hostSVGSelection.call(this.xAxis);
-  }
 
-  ngOnInit(){
-  	// subscribe to provided Input Observable 
-  	this.srcTransformObs.subscribe(
-  		transformValue => {
-  			this.xRescaled = transformValue.rescaleX(this.xScale);
-  			this.xAxis.scale(this.xRescaled);
-      	this.hostSVGSelection.call(this.xAxis);
-  		}
-  	)
+    // subscribe to provided Input Observable 
+    this.srcTransformObs.subscribe(
+      transformValue => {
+        this.xRescaled = transformValue.rescaleX(this.xScale);
+        this.xAxis.scale(this.xRescaled);
+        this.hostSVGSelection.call(this.xAxis);
+      }
+    )
   }
 }

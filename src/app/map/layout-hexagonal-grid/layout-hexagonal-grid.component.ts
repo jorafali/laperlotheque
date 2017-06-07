@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Song } from '../../song/song';
 
 @Component({
-  selector: 'svg[app-layout-hexagonal-grid]',
+  selector: 'svg:g[app-layout-hexagonal-grid]',
   templateUrl: './layout-hexagonal-grid.component.html',
   styleUrls: ['./layout-hexagonal-grid.component.css']
 })

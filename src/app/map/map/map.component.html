@@ -1,7 +1,11 @@
 <svg xmlns:svg="http://www.w3.org/2000/svg"
-			xmlns:xhtml="http://www.w3.org/1999/xhtml" id="root" height="100%" appZoom #d3zoom="appZoom">
+			xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+			id="root" height="100%" 
+			appZoom #d3zoom="appZoom">
 	<g [attr.transform]="(d3zoom.observables.zoomTransform | async).toString()">
-		<xhtml:router-outlet></xhtml:router-outlet>
+		<g *ngFor="let song of (songs | async)">
+			<g [app-circle-item]="song"></g>
+		</g>
 	</g>
 	<g id="xAxisG" [appXAxis]="d3zoom.observables.zoomTransform"></g>
 	<g id="yAxisG" [appYAxis]="d3zoom.observables.zoomTransform"></g>

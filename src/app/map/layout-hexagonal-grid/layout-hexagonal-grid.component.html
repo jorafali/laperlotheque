@@ -1,3 +1,6 @@
 <svg:g *ngFor="let song of (songs | async)">
-	<svg:circle [attr.cx]="song.coordinates[0]" [attr.cy]="song.coordinates[1]" r="40" stroke="black" stroke-width="3" fill="red" />
+	<svg:circle 
+		[attr.cx]="song.coordinates[0]" 
+		[attr.cy]="song.coordinates[1]" 
+		r="40" stroke="black" stroke-width="3" fill="red" />
 </svg:g>

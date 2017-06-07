@@ -1,29 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { LayoutModule } from './layout/layout.module';
+
 import { ZoomDirective } from './zoom.directive';
 import { XAxisDirective } from './x-axis.directive';
 import { YAxisDirective } from './y-axis.directive';
-
-import { D3HexbinPipe } from './d3-hexbin.pipe';
 
 import { MapDataService } from './map-data.service' ;
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    LayoutModule
   ],
   exports: [
   	ZoomDirective,
   	XAxisDirective,
-  	YAxisDirective,
-    D3HexbinPipe
+  	YAxisDirective
   ],
   declarations: [
     ZoomDirective,
     XAxisDirective,
-    YAxisDirective,
-    D3HexbinPipe
+    YAxisDirective
   ],
   providers: [MapDataService]
 })

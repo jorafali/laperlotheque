@@ -8,11 +8,12 @@ import { SongService } from '../song/song.service';
 // LIBS
 import { D3MapModule } from '../../assets/lib/map/map.module';
 import { LayoutHexagonalGridComponent } from './layout-hexagonal-grid/layout-hexagonal-grid.component';
+import { CircleItemComponent } from './circle-item/circle-item.component';
 
 const mapRoutes: Routes = [
   {
     path: '',
-    component: LayoutHexagonalGridComponent
+    component: MapComponent
   }
 ]
 
@@ -24,11 +25,13 @@ const mapRoutes: Routes = [
   ],
   exports: [
   	MapComponent,
-    LayoutHexagonalGridComponent
+    LayoutHexagonalGridComponent,
+    CircleItemComponent
   ],
   declarations: [
     MapComponent,
-    LayoutHexagonalGridComponent
+    LayoutHexagonalGridComponent,
+    CircleItemComponent
   ],
   providers: [
     SongService
