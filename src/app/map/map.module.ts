@@ -6,13 +6,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { SongService } from '../song/song.service';
 
 // LIBS
-import { D3MapModule } from '../../assets/lib/map/map.module';
-import { LayoutHexagonalGridComponent } from './layout-hexagonal-grid/layout-hexagonal-grid.component';
-import { CircleItemComponent } from './circle-item/circle-item.component';
+import { D3MapModule } from '../lib/map/map.module';
+import { SongModule } from '../song/song.module';
+
 
 const mapRoutes: Routes = [
   {
-    path: '',
+    path: '', redirectTo: 'hex', pathMatch: 'full'
+  },
+  {
+    path: 'hex',
     component: MapComponent
   }
 ]
@@ -21,17 +24,14 @@ const mapRoutes: Routes = [
   imports: [
     CommonModule,
     D3MapModule,
+    SongModule,
     RouterModule.forChild(mapRoutes)
   ],
   exports: [
-  	MapComponent,
-    LayoutHexagonalGridComponent,
-    CircleItemComponent
+  	MapComponent
   ],
   declarations: [
-    MapComponent,
-    LayoutHexagonalGridComponent,
-    CircleItemComponent
+    MapComponent
   ],
   providers: [
     SongService

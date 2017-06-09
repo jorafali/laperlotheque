@@ -22,8 +22,6 @@ export class XAxisDirective implements OnInit, AfterViewInit {
   constructor(private el: ElementRef) {
   	this.hostSvg = this.el.nativeElement;
   	this.hostSVGSelection = select(this.hostSvg);
-    console.log(this.el.nativeElement.parentElement.clientWidth)
-    console.log('width',this.hostSvg.parentElement.clientWidth);
   }
 
   ngOnInit(){

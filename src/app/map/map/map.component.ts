@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Song } from '../../song/song';
-import { SongService } from '../../song/song.service';
 import { Observable } from 'rxjs/Observable';
 
-import { MapDataService } from '../../../assets/lib/map/map-data.service';
-import { D3HexbinPipe } from '../../../assets/lib/map/layout/d3-hexbin.pipe'
+import { MapDataService } from '../../lib/map/map-data.service';
+import { SongService} from '../../song/song.service';
 
 @Component({
   selector: '[app-map]',
@@ -14,26 +13,22 @@ import { D3HexbinPipe } from '../../../assets/lib/map/layout/d3-hexbin.pipe'
 export class MapComponent implements OnInit {
 
 	public songs: Observable<Array<any>>;
-  private layoutDataTransform: any;
+  public layoutType: string;
+  public shapeType: string = 'CIRCLE';
+
+  // used by pipes to find x and y coordinates of songs
+  readonly xAccessor: any= function(d){return d.coordinates[0]};
+  readonly yAccessor: any= function(d){return d.coordinates[1]};
 
   constructor(private songService: SongService, private mapDataService: MapDataService) {
+    this.mapDataService.initLayout({type: 'HEX', xAccessor: this.xAccessor, yAccessor: this.yAccessor})
     this.songs = this.mapDataService.observables.data;
   }
 
   ngOnInit() {
-    this.layoutDataTransform = new D3HexbinPipe();
-  	// get songs to be displayed on the map. need to implement lazy loading.
-  	this.songService.getSongs()
-      .map(songs => {
-        let xAccessor = function(d){return d.coordinates[0]};
-        let yAccessor = function(d){return d.coordinates[1]};
-        return this.layoutDataTransform.transform(songs, xAccessor, yAccessor);
-      })
+    this.songService.getSongs()
       .subscribe(
-        data => {
-          // console.log(data);
-          this.mapDataService.subjects.data.next(data);
-        }
+        (songs) => {this.mapDataService.subjects.data.next(songs)}
       )
   }
 

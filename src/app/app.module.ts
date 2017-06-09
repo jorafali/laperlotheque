@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AppComponent } from './app.component';
 
 // Custom modules
 // LIB
-import { AuthenticationModule } from '../assets/lib/authentication/authentication.module';
-import { D3MapModule } from '../assets/lib/map/map.module';
+import { AuthenticationModule } from './lib/authentication/authentication.module';
+import { D3MapModule } from './lib/map/map.module';
 
 // FEATURES
 import { MapModule } from './map/map.module';

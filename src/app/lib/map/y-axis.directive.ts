@@ -40,7 +40,7 @@ export class YAxisDirective implements OnInit, AfterViewInit {
     // subscribe to provided Input Observable 
     this.srcTransformObs.subscribe(
       transformValue => {
-        this.yRescaled = transformValue.rescaleX(this.yScale);
+        this.yRescaled = transformValue.rescaleY(this.yScale);
         this.yAxis.scale(this.yRescaled);
         this.hostSVGSelection.call(this.yAxis);
       }

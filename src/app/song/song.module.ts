@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-import { PopupModule } from '../../assets/lib/popup/popup.module';
+import { PopupModule } from '../lib/popup/popup.module';
+import { D3MapModule } from '../lib/map/map.module';
 
 import { SongService, SongResolveService } from './song.service';
 import { MetricsService } from './metrics.service';
@@ -14,7 +15,7 @@ import { SongTileComponent } from './song-tile/song-tile.component';
 import { UploadAudioFileComponent } from './upload-song/upload-audio-file/upload-audio-file.component';
 import { EditSongComponent } from './upload-song/edit-song/edit-song.component';
 import { UploadThumbnailFileComponent } from './upload-song/upload-thumbnail-file/upload-thumbnail-file.component';
-import { SongHighlightComponent } from './song-highlight/song-highlight.component';
+import { SongItemsComponent } from './song-items/song-items.component';
 
 const songRoutes: Routes = [
   // {
@@ -53,7 +54,8 @@ const songRoutes: Routes = [
     CommonModule,
     FormsModule,
     RouterModule.forChild(songRoutes),
-    PopupModule
+    PopupModule,
+    D3MapModule
   ],
   declarations: [
     UploadSongComponent,
@@ -61,14 +63,14 @@ const songRoutes: Routes = [
     UploadAudioFileComponent,
     EditSongComponent,
     UploadThumbnailFileComponent,
-    SongHighlightComponent],
+    SongItemsComponent],
   exports: [
     UploadSongComponent,
     SongTileComponent,
     UploadAudioFileComponent,
     EditSongComponent,
     UploadThumbnailFileComponent,
-    SongHighlightComponent],
+    SongItemsComponent],
   providers: [
     SongService, 
     SongResolveService,

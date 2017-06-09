@@ -8,6 +8,8 @@ import { XAxisDirective } from './x-axis.directive';
 import { YAxisDirective } from './y-axis.directive';
 
 import { MapDataService } from './map-data.service' ;
+import { D3HexbinService } from './layout/d3-hexbin.service';
+import { CircleComponent } from './shape/circle/circle.component';
 
 @NgModule({
   imports: [
@@ -17,13 +19,15 @@ import { MapDataService } from './map-data.service' ;
   exports: [
   	ZoomDirective,
   	XAxisDirective,
-  	YAxisDirective
+  	YAxisDirective,
+    CircleComponent
   ],
   declarations: [
     ZoomDirective,
     XAxisDirective,
-    YAxisDirective
+    YAxisDirective,
+    CircleComponent
   ],
-  providers: [MapDataService]
+  providers: [MapDataService, D3HexbinService]
 })
 export class D3MapModule { }

@@ -6,7 +6,7 @@ import { hexbin as d3Hexbin, Hexbin} from 'd3-hexbin';
 })
 export class D3HexbinPipe implements PipeTransform {
 
-	private hexbin: Hexbin<Array<number>> = d3Hexbin();
+	public hexbin: Hexbin<Array<number>> = d3Hexbin();
 	readonly hexagonRadius: number = 100;
 
 	constructor(){

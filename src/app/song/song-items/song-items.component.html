@@ -1,0 +1,31 @@
+<svg:g *ngFor="let song of (songs | async)">
+	<svg:defs [ngSwitch]="clipPathType">
+		<svg:clipPath [id]="'bla'+song[0].id"
+			clipPathUnits="objectBoundingBox"
+			[ngSwitch]="clipPathType">
+			<ng-template ngSwitchCase="0">
+				<svg:rect
+					width="1"
+					height="1"
+				></svg:rect>
+			</ng-template>
+			<ng-template ngSwitchDefault>
+				<svg:circle
+					r="0.5"
+					cx="0.5"
+					cy="0.5"
+				></svg:circle>
+			</ng-template>
+		</svg:clipPath>
+	</svg:defs>
+
+	<svg:image
+	[style.clip-path]="'url(#bla'+song[0].id+')'"
+	[attr.href]="song[0].thumbnailUrl"
+	[attr.x]="song.x-100"
+	[attr.y]="song.y-100"
+	width="200"
+	height="200"
+	preserveAspectRatio="xMidYMid slice"></svg:image>
+	<!-- SOME SONG BEHAVIOR -->
+</svg:g>

@@ -1,4 +1,18 @@
-<svg:circle
-	[attr.cx]="data.x" 
-	[attr.cy]="data.y" 
-	r="40" stroke="black" stroke-width="3" fill="red" />
+<svg:g *ngFor="let datum of (data | async)">
+	<svg:defs>
+		<svg:clipPath [id]="datum[0].id">
+			<svg:circle
+			r="100"
+			[attr.cx]="datum.x"
+			[attr.cy]="datum.y"></svg:circle></svg:clipPath></svg:defs>
+	<svg:image
+	[style.clip-path]="'url(#'+datum[0].id+')'"
+	[attr.href]="datum[0].thumbnailUrl"
+	[attr.x]="datum.x-100"
+	[attr.y]="datum.y-100"
+	width="200"
+	height="200"
+	preserveAspectRatio="xMidYMid slice"></svg:image>
+	<!--  -->
+</svg:g>
+
