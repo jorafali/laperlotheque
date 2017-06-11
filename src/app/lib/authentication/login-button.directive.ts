@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 export class LoginButtonDirective implements OnInit {
 
 	@HostListener('click') goToLogin(){
-		this.router.navigate([{outlets: {p: 'login'}}])
+		this.router.navigate([{outlets: {p: 'login'}}], {queryParamsHandling:'merge'})
 	};
 
   constructor(

@@ -3,8 +3,8 @@
 	<router-outlet></router-outlet>
 </main>
 <div id="login" class="flex-center">
-	<div app-login-button>LOGIN</div>
-	<div app-logout-button>LOGOUT</div>
-	<div [routerLink]="[{}]" [queryParams]="{shape:1}">>>CIRCLE<<</div>
+	<div app-login-button>>>LOGIN<<</div>
+	<div app-logout-button>>>LOGOUT<<</div>
+	<div [routerLink]="[{}]" [queryParams]="{shape:1}" queryParamsHandling="merge">>>CIRCLE<<</div>
 	<div [routerLink]="[{}]" [queryParams]="{shape:0}">>>RECT<<</div>
 </div>

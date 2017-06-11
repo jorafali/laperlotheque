@@ -14,7 +14,7 @@ export enum ClipPathTypeEnum {
 export class SongItemsComponent implements OnInit {
 
 	@Input('song-items-data') songs: Observable<Array<any>>
-	public clipPathType: any;
+	private clipPathType: any= 1;
 
   constructor(private route: ActivatedRoute) {
   }
@@ -22,7 +22,6 @@ export class SongItemsComponent implements OnInit {
   ngOnInit() {
   	this.route.queryParams.subscribe(
   		(f)=>{
-  			console.log(f)
   			this.clipPathType = +f.shape
   		}
   	)

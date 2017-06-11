@@ -19,7 +19,7 @@ export class PopupComponent implements OnInit {
   	private router: Router) { }
 
   closePopup(){
-  	this.router.navigate([{outlets: {p: null}}])
+  	this.router.navigate([{outlets: {p: null}}], {queryParamsHandling: 'merge'})
   }
 
   ngOnInit() {
