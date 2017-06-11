@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 export enum ClipPathTypeEnum {
-	RECTANGLE
+	circle,
+  square
 }
 
 @Component({

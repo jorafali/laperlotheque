@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MapComponent } from './map/map.component';
 import { RouterModule, Routes } from '@angular/router';
 
+import { MapComponent } from './map/map.component';
+import { AddItemComponent } from './add-item/add-item.component';
+ 
 import { SongService } from '../song/song.service';
 
 // LIBS
@@ -28,10 +30,12 @@ const mapRoutes: Routes = [
     RouterModule.forChild(mapRoutes)
   ],
   exports: [
-  	MapComponent
+  	MapComponent,
+    AddItemComponent
   ],
   declarations: [
-    MapComponent
+    MapComponent,
+    AddItemComponent
   ],
   providers: [
     SongService

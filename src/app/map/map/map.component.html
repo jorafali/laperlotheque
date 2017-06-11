@@ -5,7 +5,9 @@
 	appZoom #d3zoom="appZoom">
 	<g 
 		[attr.transform]="(d3zoom.observables.zoomTransform | async).toString()">
+		<!-- THE SONGS -->
 		<g app-song-items [song-items-data]="songs"></g>
+		<!-- THE one overlay that is the entry point to uploading new song -->
 		<g *ngIf="isAdmin" 
 			[app-add-item]="d3zoom.observables.zoomMouseCoordinates | async">
 		</g>
