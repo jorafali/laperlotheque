@@ -4,8 +4,11 @@
 	id="root" height="100%" 
 	appZoom #d3zoom="appZoom">
 	<g 
-		[attr.transform]="(d3zoom.observables.zoomTransform | async).toString()"
-		app-song-items [song-items-data]="songs">
+		[attr.transform]="(d3zoom.observables.zoomTransform | async).toString()">
+		<g app-song-items [song-items-data]="songs"></g>
+		<g *ngIf="isAdmin" 
+			[app-add-item]="d3zoom.observables.zoomMouseCoordinates | async">
+		</g>
 	</g>
 	<!-- axis -->
 	<g id="xAxisG" [appXAxis]="d3zoom.observables.zoomTransform"></g>

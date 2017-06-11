@@ -25,6 +25,11 @@ export class EditSongControlService {
 		songToEdit: this._songToEditSubject.asObservable().do(val => {console.log('data wanted from songToEdit obs :',val)})
 	};
 
+	set coordinates(coordinates: [number, number]){
+		this._songToEdit.coordinates = coordinates;
+		this._songToEditSubject.next(this._songToEdit);
+	}
+
 	set id(val: any){
 		this._songToEdit.id = val;
 		this._songToEditSubject.next(this._songToEdit);
@@ -96,6 +101,11 @@ export class EditSongControlService {
 			// that is because in actuality the Url doesn't change, only the underlying asset has changed in the Store
 			this.thumbnailUrl = this.thumbnailUrl+'?v='+Date.now().toString(36);
 		};
+	}
+
+	public createSong(song: Song, accountId){
+		return this.songService.createSong(song, accountId)
+			.do(song=>console.log('created song :', song));
 	}
 
 	public updateSongAttributes(attrNames: Array<UpdateableSongFieldsEnum>): Observable<Song>{

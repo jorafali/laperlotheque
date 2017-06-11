@@ -10,7 +10,6 @@ export class D3HexbinService {
 	constructor(){}
 
   public transform = (value: Array<Array<number>>, xAccessor?: any, yAccessor?: any)=> {
-  	console.log('inside hexbin pipe')
   	if(!xAccessor){
   		let bin = this.hexbin(value);
   		return bin;	

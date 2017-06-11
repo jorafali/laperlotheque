@@ -21,8 +21,8 @@ export class SongItemsComponent implements OnInit {
 
   ngOnInit() {
   	this.route.queryParams.subscribe(
-  		(f)=>{
-  			this.clipPathType = +f.shape
+  		(p)=>{
+  			this.clipPathType = +p.shape
   		}
   	)
   }

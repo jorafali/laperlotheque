@@ -8,7 +8,7 @@ export class MapDataService {
 
 	constructor(private d3HexbinService: D3HexbinService) {}
 
-	private layoutData: (data: Array<any>)=>Array<any>;
+	public layoutData: (data: Array<any>)=>Array<any>;
 
 	public subjects = {
 		data: new BehaviorSubject<Array<any>>(null)
@@ -32,7 +32,7 @@ export class MapDataService {
 					this.d3HexbinService.hexbin
 						.radius(conf.radius || this.d3HexbinService.hexagonRadius)
 						.x(conf.xAccessor || function(d){return d[0]})
-						.y(conf.xAccessor || function(d){return d[1]})
+						.y(conf.yAccessor || function(d){return d[1]})
 
 					this.layoutData = this.d3HexbinService.transform;
 					break;

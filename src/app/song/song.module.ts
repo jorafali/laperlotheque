@@ -19,10 +19,6 @@ import { SongItemsComponent } from './song-items/song-items.component';
 
 const songRoutes: Routes = [
   // {
-  //   path: '',
-  //   component: SongListComponent
-  // },
-  // {
   //   path: ':id', 
   //   component: SongHighlightComponent,
   //   resolve: {
@@ -30,23 +26,23 @@ const songRoutes: Routes = [
   //   },
   //   outlet: 'p'
   // },
-  // {
-  //   path: 'upload',
-  //   component: UploadSongComponent,
-  //   outlet: 'p',
-  //   children: [
-  //     {
-  //       path: 'new',
-  //       component: UploadAudioFileComponent
-  //     },
-  //     {
-  //       path: 'edit',
-  //       component: EditSongComponent,
-  //       resolve: {song: EditSongIdParamResolveService},
-  //       runGuardsAndResolvers: 'paramsOrQueryParamsChange'
-  //     }
-  //   ]
-  // }
+  {
+    path: 'upload',
+    component: UploadSongComponent,
+    outlet: 'p',
+    children: [
+      {
+        path: 'new',
+        component: UploadAudioFileComponent
+      },
+      {
+        path: 'edit',
+        component: EditSongComponent,
+        resolve: {song: EditSongIdParamResolveService},
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange'
+      }
+    ]
+  }
 ]
 
 @NgModule({

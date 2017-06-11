@@ -30,10 +30,10 @@ export class AuthService {
 		isLoggedIn: this.isLoggedInSubject.asObservable().do(data => {
 	      // console.log('data wanted from isLoginObs :', data);
 	    }),
-	    isAdmin: this.isAdminSubject.asObservable().do(data => {
+	  isAdmin: this.isAdminSubject.asObservable().do(data => {
 	      // console.log('data wanted from isAdminObs :', data);
 	    }),
-	    accountLoggedIn: this.accountLoggedInSubject.asObservable().do(data => {
+	  accountLoggedIn: this.accountLoggedInSubject.asObservable().do(data => {
 	      // console.log('data wanted from acctLogInObs :', data);
 	    })  
 	}
@@ -136,9 +136,11 @@ export class AuthService {
       })
   }
 
-  private parseAccoutData = (acctData: {username: string,identities: Array<any>, roles: Array<any>}) => {
+  private parseAccoutData = (acctData: {username: string, id, identities: Array<any>, roles: Array<any>}) => {
     let acctLoggedIn = {};
-    acctLoggedIn['local'] = {username: acctData.username};
+    acctLoggedIn['local'] = {
+      username: acctData.username,
+      accountId: acctData.id };
     if (acctData.identities.length > 0) {
       acctData.identities.forEach((indentity, i, arr)=>{
         acctLoggedIn[indentity.provider] = indentity.profile._json;

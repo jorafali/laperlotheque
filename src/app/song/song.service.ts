@@ -5,6 +5,7 @@ import { Router, Resolve, RouterStateSnapshot,
 import { Observable } from 'rxjs' ;
 
 import { Song } from './song';
+import { AuthService} from '../lib/authentication/auth.service';
 
 export enum UpdateableSongFieldsEnum {
   coordinates,
@@ -25,8 +26,18 @@ export enum ImageTypesEnum {
 @Injectable()
 export class SongService {
 
+  private _accountId: any;
+
   constructor(
-  	private http: Http) { }
+  	private http: Http,
+    private authService: AuthService) {
+
+    this.authService.observables.accountLoggedIn.subscribe(
+      (account) => {
+        this._accountId = account? account.local.accountId: null;
+      }
+    )
+  }
 
   public getSongs(filter?): Observable<Song[]> {
   	let observable = this.http.get(`api/songs`)
@@ -56,8 +67,8 @@ export class SongService {
     return observable
   }
 
-  public createSong(song): Observable<Song> {
-    let observable = this.http.post('api/songs', song)
+  public createSong(song, accountId): Observable<Song> {
+    let observable = this.http.post('api/accounts/'+accountId+'songs', song)
       .map((r: Response)=>{
         return this.newSong(r.json());
       })
@@ -71,7 +82,7 @@ export class SongService {
       })
   }
 
-  public uploadAudioFile = (audioFile, songId?): Observable<Song> => {
+  public uploadAudioFile = (audioFile, songId): Observable<Song> => {
     let observable: Observable<Song>;
 
     if (typeof audioFile === 'undefined' || audioFile === null) {
@@ -86,7 +97,7 @@ export class SongService {
       let xhr = new XMLHttpRequest();
 
       // sets an id id query param if available
-      let url = (songId)?'api/songs/track?id='+songId: 'api/songs/track';
+      let url ='api/songs/track?id='+songId;
 
       // add file to formData 
       formData.append('audioFile', audioFile, audioFile.name);

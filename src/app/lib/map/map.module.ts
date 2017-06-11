@@ -10,6 +10,7 @@ import { YAxisDirective } from './y-axis.directive';
 import { MapDataService } from './map-data.service' ;
 import { D3HexbinService } from './layout/d3-hexbin.service';
 import { CircleComponent } from './shape/circle/circle.component';
+import { AddItemComponent } from './add-item/add-item.component';
 
 @NgModule({
   imports: [
@@ -20,13 +21,15 @@ import { CircleComponent } from './shape/circle/circle.component';
   	ZoomDirective,
   	XAxisDirective,
   	YAxisDirective,
-    CircleComponent
+    CircleComponent,
+    AddItemComponent
   ],
   declarations: [
     ZoomDirective,
     XAxisDirective,
     YAxisDirective,
-    CircleComponent
+    CircleComponent,
+    AddItemComponent
   ],
   providers: [MapDataService, D3HexbinService]
 })
