@@ -1,0 +1,17 @@
+<svg:defs>
+	<svg:clipPath [id]="'bla'+datum[0].id"
+		clipPathUnits="objectBoundingBox">
+			<svg:use [attr.href]="'../../../assets/shapes.defs.svg#'+clipPathType" height="1" width="1"></svg:use>
+	</svg:clipPath>
+</svg:defs>
+
+<svg:use id="addBtn" href="../../../assets/icons/symbol-defs.svg#LPplus" 
+	[attr.x]="datum.x-100"
+	[attr.y]="datum.y-100"
+	[style.clip-path]="'url(#bla'+datum[0].id+')'"
+	width="200" height="200"
+	preserveAspectRatio="xMidYMid slice"
+
+	[routerLink]="[{outlets: {p:'upload/new'} }]"
+	>
+</svg:use>

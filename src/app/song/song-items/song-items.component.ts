@@ -1,11 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-
-export enum ClipPathTypeEnum {
-	circle,
-  square
-}
+import { ClipPathTypeEnum } from '../../lib/map/map.module';
 
 @Component({
   selector: '[app-song-items]',
@@ -15,7 +11,7 @@ export enum ClipPathTypeEnum {
 export class SongItemsComponent implements OnInit {
 
 	@Input('song-items-data') songs: Observable<Array<any>>
-	private clipPathType: any= 1;
+	private clipPathType: any;
 
   constructor(private route: ActivatedRoute) {
   }
@@ -23,7 +19,7 @@ export class SongItemsComponent implements OnInit {
   ngOnInit() {
   	this.route.queryParams.subscribe(
   		(p)=>{
-  			this.clipPathType = +p.shape
+  			this.clipPathType = ClipPathTypeEnum[+p.shape] || ClipPathTypeEnum[1]
   		}
   	)
   }

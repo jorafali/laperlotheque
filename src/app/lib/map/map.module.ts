@@ -10,6 +10,11 @@ import { YAxisDirective } from './y-axis.directive';
 import { MapDataService } from './map-data.service' ;
 import { D3HexbinService } from './layout/d3-hexbin.service';
 
+export enum ClipPathTypeEnum {
+  square,
+  circle
+}
+
 @NgModule({
   imports: [
     CommonModule,

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MapComponent } from './map/map.component';
-import { AddItemComponent } from './add-item/add-item.component';
  
 import { SongService } from '../song/song.service';
 
@@ -11,13 +10,9 @@ import { SongService } from '../song/song.service';
 import { D3MapModule } from '../lib/map/map.module';
 import { SongModule } from '../song/song.module';
 
-
 const mapRoutes: Routes = [
   {
-    path: '', redirectTo: 'hex', pathMatch: 'full'
-  },
-  {
-    path: 'hex',
+    path: '',
     component: MapComponent
   }
 ]
@@ -30,12 +25,10 @@ const mapRoutes: Routes = [
     RouterModule.forChild(mapRoutes)
   ],
   exports: [
-  	MapComponent,
-    AddItemComponent
+  	MapComponent
   ],
   declarations: [
-    MapComponent,
-    AddItemComponent
+    MapComponent
   ],
   providers: [
     SongService
