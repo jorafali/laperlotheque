@@ -1,9 +1,6 @@
-<div>
-	<h4>Choose a file to Upload</h4>
-</div>
 <form>
 	<div class="form-group">
-		<label for="audioFile">Upload track file
+		<label id="btnAudioFile" class="button" for="audioFile">Upload FILE
 			<input id="audioFile" class="form-control"
 				[(ngModel)]="audioFileInput"
 				name="audioFileInput"
@@ -11,8 +8,11 @@
 				type='file'
 				(change)="onFileChange($event)">
 		</label>
+		<button *ngIf="!audioFile"
+			type="button" 
+			class="button btn btn-primary">Upload LINK</button>
 	</div>
-	<div>
+	<div *ngIf="audioFile">
 		<button class="btn btn-lg btn-outline-primary"
 				type="button" [disabled]="!audioFormValid"
 				(click)="submitUpload()">Upload</button>
@@ -20,5 +20,4 @@
 				type="button"
 				(click)="cancelUpload()">Cancel</button>
 	</div>
-	<div>{{audioFile}}</div>
-</form>	
+</form>

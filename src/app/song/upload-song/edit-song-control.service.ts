@@ -30,6 +30,10 @@ export class EditSongControlService {
 		this._songToEditSubject.next(this._songToEdit);
 	}
 
+	get coordinates(){
+		return this._songToEdit.coordinates;
+	}
+
 	set id(val: any){
 		this._songToEdit.id = val;
 		this._songToEditSubject.next(this._songToEdit);
@@ -103,9 +107,12 @@ export class EditSongControlService {
 		};
 	}
 
-	public createSong(song: Song, accountId){
-		return this.songService.createSong(song, accountId)
-			.do(song=>console.log('created song :', song));
+	public createSong(accountId){
+		return this.songService.createSong(this._songToEdit, accountId)
+			.do(song=>{
+				// assigns song to edit 
+				this.initNewSongToEdit(song);
+			});
 	}
 
 	public updateSongAttributes(attrNames: Array<UpdateableSongFieldsEnum>): Observable<Song>{

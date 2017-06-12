@@ -68,7 +68,7 @@ export class SongService {
   }
 
   public createSong(song, accountId): Observable<Song> {
-    let observable = this.http.post('api/accounts/'+accountId+'songs', song)
+    let observable = this.http.post('api/accounts/'+accountId+'/songs', song)
       .map((r: Response)=>{
         return this.newSong(r.json());
       })
@@ -121,9 +121,11 @@ export class SongService {
             resolve(this.newSong(JSON.parse(xhr.response).song));
           } else if (xhr.status == 401) {
             console.log('xhr response :',xhr.response);
-            resolve(JSON.parse(xhr.response) as Error);
+            // need to throw error here
+            reject(JSON.parse(xhr.response) as Error);
           } else {
             console.log(xhr.response)
+            // need to throw error here
             reject(JSON.parse(xhr.response) as Error);
           }
         }

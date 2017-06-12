@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, HostListener, OnChanges } from '@angular/core';
 import { MapDataService } from '../../../lib/map/map-data.service';
 import { ClipPathTypeEnum } from '../../../lib/map/map.module';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { EditSongControlService } from '../edit-song-control.service';
+import { Song } from '../../song';
 
 @Component({
   selector: '[app-add-song]',
@@ -18,7 +20,19 @@ export class AddSongComponent implements OnInit, OnChanges {
 
   private clipPathType: any= 1;
 
-  constructor(private mapDataService: MapDataService, private route: ActivatedRoute) {
+  constructor(
+    private mapDataService: MapDataService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private editSongControlService: EditSongControlService) {
+  }
+
+  public goToUploadSong = ()=>{
+    console.log('gotoypload')
+    let newSong = Song.emptySong;
+    newSong.coordinates = [this.datum.x, this.datum.y]
+    this.editSongControlService.initNewSongToEdit(newSong);
+    this.router.navigate([{outlets: {p: 'upload/new'}}])
   }
 
   ngOnInit() {

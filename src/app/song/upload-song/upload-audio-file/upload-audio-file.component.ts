@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { EditSongControlService } from '../edit-song-control.service';
+import { AuthService } from '../../../lib/authentication/auth.service';
 
 @Component({
   selector: 'app-upload-audio-file',
@@ -15,21 +16,32 @@ export class UploadAudioFileComponent implements OnInit {
 
 	public audioFile: any;
 	public audioFormValid: boolean = false;
+  private _accountId: any;
 
   constructor(
+    private authService: AuthService,
   	private router: Router,
   	private route: ActivatedRoute,
-  	private editSongControlService: EditSongControlService) { }
+  	private editSongControlService: EditSongControlService) {
+
+    this.authService.observables.accountLoggedIn.subscribe(
+      account=>{this._accountId = account.local.accountId})
+  }
 
   public submitUpload(){
     // if there is a file to upload attached to this song edit control then upload it
-      this.editSongControlService.uploadAudioFile()
-        .subscribe(success=> {
-          if (!success) {
-            return
-          } 
-          this.router.navigate(['upload/edit'],{queryParams: {editSongId: success.id}});
-        })
+    // create the song metadata first and then upload the file for it
+    this.editSongControlService.audioFile = this.audioFile;
+    this.editSongControlService.createSong(this._accountId)
+      .switchMap((song)=>{
+        return this.editSongControlService.uploadAudioFile()
+      })
+      .subscribe(success=> {
+        if (!success) {
+          return
+        } 
+        this.router.navigate([{outlets: {p: 'upload/edit'}}],{queryParams: {editSongId: success.id}});
+      })
   }
 
   public cancelUpload() {
@@ -37,9 +49,8 @@ export class UploadAudioFileComponent implements OnInit {
   }
 
   public onFileChange(fileToUpload: any){
-	this.editSongControlService.audioFile = fileToUpload.target.files[0];
+	this.audioFile = fileToUpload.target.files[0];
 	this.audioFormValid = true;
-	console.log(fileToUpload);
   }
 
   ngOnInit() {
