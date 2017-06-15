@@ -1,6 +1,21 @@
 <form>
-	<div class="form-group">
-		<label id="btnAudioFile" class="button" for="audioFile">Upload FILE
+Upload a new audio source :
+	<!-- RADIO BUTTON TO CHOOSE BETWEEN FILE AND URL -->
+	<span class="label label-default">url</span>
+	<input type="radio" value="0"
+		name="_isTrackFile"
+		[(ngModel)]="_isTrackFile">
+		<span class="label label-default">file</span>
+	<input type="radio" value="1"
+		name="_isTrackFile"
+		[(ngModel)]="_isTrackFile">
+
+	<!-- FILE OR URL INPUTS -->
+	<ng-container [ngSwitch]="_isTrackFile">
+		<!-- FILE -->
+		<label id="btnAudioFile" class="form-control" 
+			for="audioFile"
+			*ngSwitchCase="1">Select a file ...
 			<input id="audioFile" class="form-control"
 				[(ngModel)]="audioFileInput"
 				name="audioFileInput"
@@ -8,16 +23,11 @@
 				type='file'
 				(change)="onFileChange($event)">
 		</label>
-		<button *ngIf="!audioFile"
-			type="button" 
-			class="button btn btn-primary">Upload LINK</button>
-	</div>
-	<div *ngIf="audioFile">
-		<button class="btn btn-lg btn-outline-primary"
-				type="button" [disabled]="!audioFormValid"
-				(click)="submitUpload()">Upload</button>
-		<button class="btn btn-lg btn-outline-primary"
-				type="button"
-				(click)="cancelUpload()">Cancel</button>
-	</div>
+		<!-- URL -->
+		<input type="text" class="form-control"
+			*ngSwitchCase="0"
+			name="audioLink" [(ngModel)]="audioLink"
+			placeholder="link url">
+	</ng-container>
 </form>
+	

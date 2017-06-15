@@ -20,6 +20,7 @@ export class EditSongControlService {
 
 	public audioFile: any;
 	public thumbnailFile: any;
+	public thumbnailClientFileBuffer: any;
 
 	public observables = {
 		songToEdit: this._songToEditSubject.asObservable().do(val => {console.log('data wanted from songToEdit obs :',val)})
@@ -40,14 +41,6 @@ export class EditSongControlService {
 	}
 	get id(){
 		return this._songToEdit.id;
-	}
-
-	set userId(val: any){
-		this._songToEdit.userId = val;
-		this._songToEditSubject.next(this._songToEdit);
-	}
-	get userId(){
-		return this._songToEdit.userId;
 	}
 
 	set title(val: string){
@@ -82,6 +75,14 @@ export class EditSongControlService {
 		return this._songToEdit.thumbnailUrl;
 	}
 
+	set trackUrl(val: string){
+		this._songToEdit.trackUrl = val;
+		this._songToEditSubject.next(this._songToEdit);
+	}
+	get trackUrl(){
+		return this._songToEdit.trackUrl;
+	}
+
 	set tags(val: Array<string>|string){
 		let newTags: Array<string> = [];
 		if(typeof val === 'string'){
@@ -103,7 +104,8 @@ export class EditSongControlService {
 			this._songToEdit = new Song(song);
 			// here I version the edited song's thumbnailUrl so that it forces the view to re-render the image
 			// that is because in actuality the Url doesn't change, only the underlying asset has changed in the Store
-			this.thumbnailUrl = this.thumbnailUrl+'?v='+Date.now().toString(36);
+			// +'?v='+Date.now().toString(36)
+			this.thumbnailUrl = this.thumbnailUrl;
 		};
 	}
 
@@ -116,6 +118,7 @@ export class EditSongControlService {
 	}
 
 	public updateSongAttributes(attrNames: Array<UpdateableSongFieldsEnum>): Observable<Song>{
+		console.log(attrNames)
 		if(attrNames.length < 1){
 			return Observable.throw({error: 'no fields to update have been specified'});
 		}
@@ -133,6 +136,7 @@ export class EditSongControlService {
 	};
 
 	public uploadAudioFile(): Observable<Song> {
+		console.log('inside upload audioFile')
 		if(!this.audioFile){
 			return Observable.throw({error: 'no audio to upload'});
 		}
@@ -156,6 +160,12 @@ export class EditSongControlService {
 			})	
 	}
 
+	public teardown(){
+		this._songToEdit = null;
+		this.audioFile = null;
+		this.thumbnailFile = null;
+	}
+
 }
 
 @Injectable()
@@ -169,10 +179,10 @@ export class EditSongIdParamResolveService implements Resolve<Observable<Song>>{
 
   	if(!route.queryParams.editSongId){return Observable.of(null)}
     return this.songService.getSong(route.queryParams.editSongId)
-      .catch(error => {
-        console.log('Could not resolve song with from query param editSongId',error);
-        return Observable.of(null);
-      })
+      // .catch(error => {
+      //   console.log('Could not resolve song with from query param editSongId',error);
+      //   return Observable.of(null);
+      // })
   };
 
 }

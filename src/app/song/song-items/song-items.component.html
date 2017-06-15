@@ -6,6 +6,15 @@
 		</svg:clipPath>
 	</svg:defs>
 
+	<rect
+		[style.clip-path]="'url(#bla'+song[0].id+')'"
+		[attr.x]="song.x-100"
+		[attr.y]="song.y-100"
+		width="200"
+		height="200"
+		fill="red"
+
+		(click)="navigateToEdit()"></rect>
 	<svg:image
 	[style.clip-path]="'url(#bla'+song[0].id+')'"
 	[attr.href]="song[0].thumbnailUrl"
@@ -13,6 +22,8 @@
 	[attr.y]="song.y-100"
 	width="200"
 	height="200"
-	preserveAspectRatio="xMidYMid slice"></svg:image>
+	preserveAspectRatio="xMidYMid slice"
+
+	(click)="navigateToEdit($event,song[0].id)"></svg:image>
 	<!-- SOME SONG BEHAVIOR -->
 </svg:g>

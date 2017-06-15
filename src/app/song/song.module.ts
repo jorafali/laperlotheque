@@ -19,27 +19,16 @@ import { SongItemsComponent } from './song-items/song-items.component';
 import { AddSongComponent } from './upload-song/add-song/add-song.component';
 
 const songRoutes: Routes = [
-  // {
-  //   path: ':id', 
-  //   component: SongHighlightComponent,
-  //   resolve: {
-  //     song: SongResolveService
-  //   },
-  //   outlet: 'p'
-  // },
   {
-    path: 'upload',
-    component: UploadSongComponent,
+    path: 'edit',
     outlet: 'p',
+    component: UploadSongComponent,
     children: [
       {
-        path: 'new',
-        component: UploadAudioFileComponent
-      },
-      {
-        path: 'edit',
+        path: 'song',
         component: EditSongComponent,
         resolve: {song: EditSongIdParamResolveService},
+        // tells to rerun resolvers when params are changed
         runGuardsAndResolvers: 'paramsOrQueryParamsChange'
       }
     ]

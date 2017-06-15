@@ -8,9 +8,9 @@
 		height: 25px;
 		text-align: center;
 	}
-	#editThumbnailButton:hover {
-		cursor: pointer;
-	}
-	input[type="file"]{
-		display: none;
-	}
+#editThumbnailButton:hover {
+	cursor: pointer;
+}
+input[type="file"]{
+	display: none;
+}

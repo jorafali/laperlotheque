@@ -16,7 +16,7 @@ export class AddSongComponent implements OnInit, OnChanges {
   @Input('app-add-song') mouseCoordinates;
   public get datum(){
   	return this.mapDataService.layoutData([{id:0, coordinates:this.mouseCoordinates}])[0]
-  }
+  };
 
   private clipPathType: any= 1;
 
@@ -25,15 +25,14 @@ export class AddSongComponent implements OnInit, OnChanges {
     private route: ActivatedRoute,
     private router: Router,
     private editSongControlService: EditSongControlService) {
-  }
+  };
 
   public goToUploadSong = ()=>{
-    console.log('gotoypload')
     let newSong = Song.emptySong;
     newSong.coordinates = [this.datum.x, this.datum.y]
     this.editSongControlService.initNewSongToEdit(newSong);
-    this.router.navigate([{outlets: {p: 'upload/new'}}])
-  }
+    this.router.navigate([{outlets: {p: ['edit','song']}}]).then(nav=>{console.log(nav)})
+  };
 
   ngOnInit() {
     this.route.queryParams.subscribe(
@@ -41,9 +40,9 @@ export class AddSongComponent implements OnInit, OnChanges {
         this.clipPathType = ClipPathTypeEnum[+p.shape] || ClipPathTypeEnum[1]
       }
     )
-  }
+  };
 
   ngOnChanges(){
-  }
+  };
 
 }

@@ -1,3 +1,7 @@
 #addBtn {
 	z-index: -1;
+	transition: fill .3s ease;
+}
+#addBtn:hover{
+	fill:grey;
 }

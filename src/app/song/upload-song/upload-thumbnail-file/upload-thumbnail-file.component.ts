@@ -11,21 +11,21 @@ import { EditSongControlService } from '../edit-song-control.service';
 export class UploadThumbnailFileComponent implements OnInit {
 
 	public thumbnailFormValid: boolean = false;
+  private reader: FileReader = new FileReader();
 
   constructor(
     private editSongControlService: EditSongControlService,
-    private router: Router) { }
+    private router: Router) {
+
+    this.reader.onload = (event: any)=>{
+      this.editSongControlService.thumbnailClientFileBuffer = event.target.result;
+    }
+  }
 
   public onFileChange(fileToUpload: any){
-	this.editSongControlService.thumbnailFile = fileToUpload.target.files[0];
-	this.thumbnailFormValid = true;
-  this.editSongControlService.uploadThumbnailFile()
-    .subscribe(success=> {
-          if (!success) {
-            return
-          }
-          this.router.navigate(['upload/edit'],{queryParams: {editSongId: success.id}});
-        })
+    this.reader.readAsDataURL(fileToUpload.target.files[0]);
+  	this.editSongControlService.thumbnailFile = fileToUpload.target.files[0];
+  	this.thumbnailFormValid = true;
   }
 
   ngOnInit() {

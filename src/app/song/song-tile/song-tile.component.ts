@@ -49,7 +49,7 @@ export class SongTileComponent implements OnInit {
 
   navigateToEdit = (event: MouseEvent) => {
     event.stopPropagation();
-    this.router.navigate([{outlets: {p: 'upload/edit'}}], {queryParams: {editSongId: this.song.id}})
+    this.router.navigate([{outlets: {p: ['edit','song']}}], {queryParams: {editSongId: this.song.id}})
     // this.router.navigate(['upload','edit', {outlets: {p: 'edit'}}], {queryParams: {editSongId: this.song.id}})
   };
 

@@ -8,10 +8,12 @@ export class MapDataService {
 
 	constructor(private d3HexbinService: D3HexbinService) {}
 
+	private _data: Array<any> = null;
+
 	public layoutData: (data: Array<any>)=>Array<any>;
 
 	public subjects = {
-		data: new BehaviorSubject<Array<any>>(null)
+		data: new BehaviorSubject<Array<any>>(this._data)
 	}
 	public observables = {
 		data: this.subjects.data.asObservable()
