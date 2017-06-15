@@ -14,14 +14,18 @@
 #container {
 	position: absolute;
 	background-color: white;
+	border-radius: 12px;
 	max-height: 90%;
 	max-width: 90%;
 	padding: 30px;
 	overflow: scroll;
+
+	box-shadow: 0px 30px 50px 0px #777777;
 }
 #closePopup {
 	position: absolute;
 	background-color: #fffc75;
+	border-radius: 12px;
 	font-size: 20px;
 	margin: 0px;
 	top: 3px;
