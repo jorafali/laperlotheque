@@ -1,4 +1,4 @@
-<svg:g *ngFor="let song of (songs | async)">
+<svg:g *ngFor="let song of (songs)">
 	<svg:defs>
 		<svg:clipPath [id]="'bla'+song[0].id"
 			clipPathUnits="objectBoundingBox">

@@ -12,7 +12,7 @@ import { SongService} from '../../song/song.service';
 })
 export class MapComponent implements OnInit {
 
-	public songs: Observable<Array<any>>;
+	public songs: Array<any>;
   // public layoutType: string;
   public isAdmin: boolean = true;
 
@@ -22,10 +22,15 @@ export class MapComponent implements OnInit {
 
   constructor(private songService: SongService, private mapDataService: MapDataService) {
     this.mapDataService.initLayout({type: 'HEX', xAccessor: this.xAccessor, yAccessor: this.yAccessor})
-    this.songs = this.mapDataService.observables.data
+    this.songs = this.mapDataService.data
   }
 
   ngOnInit() {
+    this.mapDataService.observables.newData.subscribe(newData=>{
+      console.log('some data has been amended into map data :', newData);
+      // need to reload the corresponding components
+    });
+
     this.songService.getSongs()
       .subscribe(
         (songs) => {this.mapDataService.subjects.data.next(songs)}

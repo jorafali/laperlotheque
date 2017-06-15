@@ -8,7 +8,8 @@ export class MapDataService {
 
 	constructor(private d3HexbinService: D3HexbinService) {}
 
-	private _data: Array<any> = null;
+	private _data: Array<any> = [];
+	public data: Array<any> = [];
 
 	public layoutData: (data: Array<any>)=>Array<any>;
 
@@ -16,14 +17,37 @@ export class MapDataService {
 		data: new BehaviorSubject<Array<any>>(this._data)
 	}
 	public observables = {
-		data: this.subjects.data.asObservable()
+		newData: this.subjects.data.asObservable()
 			.filter((data)=>{
 				if(!data){return false}
 					else {return true}
 			})
+			.do(data=>{
+				for(let datum of data){
+					let i = this._data.findIndex((d, idx, arr)=>{
+						return datum.id === d.id
+					})
+					if(i > -1){
+						this._data[i] = datum;
+					} else {
+						this._data.push(datum);
+					}
+				}
+				console.log('_data :', this._data);
+			})
 			.map((data)=>{
 				let newData = this.layoutData(data);
-				console.log(newData);
+				for(let datum of newData){
+					let i = this.data.findIndex((d, idx, arr)=>{
+						return datum[0].id === d[0].id
+					})
+					if(i > -1){
+						this.data[i] = datum;
+					} else {
+						this.data.push(datum);
+					}
+				}
+				console.log('data :', this.data);
 				return newData
 			})
 	}

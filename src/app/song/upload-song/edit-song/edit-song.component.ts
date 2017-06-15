@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from '../../../lib/authentication/auth.service';
+import { MapDataService } from '../../../lib/map/map-data.service';
 
 import { EditSongControlService} from '../edit-song-control.service';
 import { SongService, UpdateableSongFieldsEnum } from '../../song.service';
@@ -32,7 +33,8 @@ export class EditSongComponent implements OnInit, OnDestroy {
   	private editSongControlService: EditSongControlService,
     private router: Router,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private mapDataService: MapDataService
     ) {
 
   }
@@ -87,6 +89,7 @@ export class EditSongComponent implements OnInit, OnDestroy {
       obsChain 
         .subscribe(song=>{
           this.song.audioFile = null;
+          this.mapDataService.subjects.data.next([song]);
           console.log('saved changes to song :', song);
         }, error=>{console.log('an error has occured :', error)})
     } else {
