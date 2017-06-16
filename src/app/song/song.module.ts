@@ -17,6 +17,7 @@ import { EditSongComponent } from './upload-song/edit-song/edit-song.component';
 import { UploadThumbnailFileComponent } from './upload-song/upload-thumbnail-file/upload-thumbnail-file.component';
 import { SongItemsComponent } from './song-items/song-items.component';
 import { AddSongComponent } from './upload-song/add-song/add-song.component';
+import { SongItemComponent } from './song-item/song-item.component';
 
 const songRoutes: Routes = [
   {
@@ -50,7 +51,8 @@ const songRoutes: Routes = [
     EditSongComponent,
     UploadThumbnailFileComponent,
     SongItemsComponent,
-    AddSongComponent],
+    AddSongComponent,
+    SongItemComponent],
   exports: [
     UploadSongComponent,
     SongTileComponent,
@@ -58,7 +60,8 @@ const songRoutes: Routes = [
     EditSongComponent,
     UploadThumbnailFileComponent,
     SongItemsComponent,
-    AddSongComponent],
+    AddSongComponent,
+    SongItemComponent],
   providers: [
     SongService, 
     SongResolveService,

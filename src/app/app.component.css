@@ -5,9 +5,14 @@
 main {
 	position: absolute;
 }
-#login {
+[app-soundplayer]{
 	position: absolute;
 	bottom: 0px;
+	width: 100%;
+}
+#login {
+	position: absolute;
+	top: 0px;
 	height: 25px;
 	width: 100%;
 	border-top: 1px solid black;

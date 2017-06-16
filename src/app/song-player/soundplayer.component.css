@@ -1,6 +1,7 @@
 :host {
 	padding: 0px;
-	height: 50px;
+	height: 30px;
+	background-color: rgba(255,255,255, 0.5);
 	/* transition: transform .5s ease; */
 	/* display: none; */
 }
@@ -14,19 +15,21 @@
 	justify-content: center;
 	justify-items: center;
 
-	border-top: 1px solid black;
+	/* border-top: 1px solid black; */
 	padding: 0px;
 	height: 100%;
 }
 
 #mainPlayerControlContainer {
 	flex: none;
-	background-color: black;
-	width: 200px;
+	width: 100px;
 	height: 100%;
 }
 	.icon#play, .icon#pause {
 		height: 30px;
+	}
+	#play {
+		fill: white;
 	}
 
 #playerInfoContainer {
@@ -35,9 +38,8 @@
 	height: 100%;
 }
 #secondaryPlayerControlContainer {
-	flex: none;
-	background-color: #fffc75;
-	width: 200px;
+	flex-grow: 1 1;
+	width: 50px;
 	height: 100%;
 }
 #playerInfoContainer:hover #cursor {

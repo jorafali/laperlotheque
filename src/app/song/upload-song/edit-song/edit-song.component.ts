@@ -69,7 +69,7 @@ export class EditSongComponent implements OnInit, OnDestroy {
       console.log('audioFile to upload')
       if(obsChain){
         obsChain = Observable.from(obsChain)
-          .map(song=>this.editSongControlService.uploadAudioFile())
+          .flatMap(song=>this.editSongControlService.uploadAudioFile())
       } else {
         obsChain = this.editSongControlService.uploadAudioFile()
       }
@@ -79,7 +79,7 @@ export class EditSongComponent implements OnInit, OnDestroy {
       console.log('thumbnailFile to upload')
       if(obsChain){
         obsChain = Observable.from(obsChain)
-          .map(song=>this.editSongControlService.uploadThumbnailFile())
+          .flatMap(song=>this.editSongControlService.uploadThumbnailFile())
       } else {
         obsChain = this.editSongControlService.uploadThumbnailFile()
       }
@@ -88,9 +88,9 @@ export class EditSongComponent implements OnInit, OnDestroy {
     if(obsChain){
       obsChain 
         .subscribe(song=>{
+          console.log('saved changes to song :', song);
           this.song.audioFile = null;
           this.mapDataService.subjects.data.next([song]);
-          console.log('saved changes to song :', song);
         }, error=>{console.log('an error has occured :', error)})
     } else {
       console.log('no changes were made to the song')

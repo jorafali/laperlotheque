@@ -1,29 +1,3 @@
 <svg:g *ngFor="let song of (songs)">
-	<svg:defs>
-		<svg:clipPath [id]="'bla'+song[0].id"
-			clipPathUnits="objectBoundingBox">
-				<svg:use [attr.href]="'../../../assets/shapes.defs.svg#'+clipPathType" height="1" width="1"></svg:use>
-		</svg:clipPath>
-	</svg:defs>
-
-	<rect
-		[style.clip-path]="'url(#bla'+song[0].id+')'"
-		[attr.x]="song.x-100"
-		[attr.y]="song.y-100"
-		width="200"
-		height="200"
-		fill="red"
-
-		(click)="navigateToEdit()"></rect>
-	<svg:image
-	[style.clip-path]="'url(#bla'+song[0].id+')'"
-	[attr.href]="song[0].thumbnailUrl"
-	[attr.x]="song.x-100"
-	[attr.y]="song.y-100"
-	width="200"
-	height="200"
-	preserveAspectRatio="xMidYMid slice"
-
-	(click)="navigateToEdit($event,song[0].id)"></svg:image>
-	<!-- SOME SONG BEHAVIOR -->
+	<svg:g [app-song-item]="song"></svg:g>
 </svg:g>

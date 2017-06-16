@@ -14,6 +14,8 @@ import { D3MapModule } from './lib/map/map.module';
 
 // FEATURES
 import { MapModule } from './map/map.module';
+import { SoundplayerModule } from './lib/soundplayer/soundplayer.module';
+import { SongPlayerModule } from './song-player/song-player.module';
 
 
 const appRoutes: Routes = [];
@@ -33,7 +35,9 @@ const appRoutes: Routes = [];
     AuthenticationModule,
     D3MapModule,
     // features
-    MapModule
+    MapModule,
+    SoundplayerModule,
+    SongPlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

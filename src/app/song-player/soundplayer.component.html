@@ -3,14 +3,14 @@
 	<div id="mainPlayerControlContainer" class="flex-center">
 		<div [ngSwitch]="songPlaying.soundObject.paused"
 			class="flex-center">
-			<img id="play" class="icon" 
-				*ngSwitchCase="true"
-				(click)="play(songPlaying)"
-				src="./assets/SVG/yellow/play3.svg">
-			<img id="pause" class="icon" 
+			<div
 				*ngSwitchCase="false"
-				(click)="pause()"
-				src="./assets/SVG/yellow/pause2.svg">
+				(click)="pause()">
+				ON AIR :</div>
+			<div
+				*ngSwitchCase="true"
+				(click)="play(songPlaying)">
+				OFF AIR :</div>
 		</div>
 	</div>
 	<!-- player song information -->
@@ -42,19 +42,7 @@
 	</div>
 	<!-- player second set of controls -->
 	<div id="secondaryPlayerControlContainer" class="flex-center">
-		<!-- <div app-volume-slider class=""
-			[volume]="(songPlaying.soundObject.muted)?0:songPlaying.soundObject.volume"></div> -->
-		<div [ngSwitch]="songPlaying.soundObject.muted"
-			class=" ">
-			<img id="mute" class="icon" 
-				*ngSwitchCase="false"
-				(click)="toggleMute()"
-				src="./assets/SVG/volume-high.svg">
-			<img id="unmute" class="icon" 
-				*ngSwitchCase="true"
-				(click)="toggleMute()"
-				src="./assets/SVG/volume-mute.svg">
-		</div>
+		M
 	</div>
 
 </div>
