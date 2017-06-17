@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Song } from '../../song/song';
 import { Observable } from 'rxjs/Observable';
 
@@ -14,15 +14,17 @@ export class MapComponent implements OnInit {
 
 	public songs: Array<any>;
   // public layoutType: string;
-  public isAdmin: boolean = true;
+  public isAdmin = true;
 
   // used for data convertion on layout to find x and y coordinates of songs
   readonly xAccessor: any= (d)=>{return d.coordinates[0]};
   readonly yAccessor: any= (d)=>{return d.coordinates[1]};
 
-  constructor(private songService: SongService, private mapDataService: MapDataService) {
-    this.mapDataService.initLayout({type: 'HEX', xAccessor: this.xAccessor, yAccessor: this.yAccessor})
-    this.songs = this.mapDataService.data
+  constructor(
+    private songService: SongService,
+    private mapDataService: MapDataService) {
+    this.mapDataService.initLayout({type: 'HEX', xAccessor: this.xAccessor, yAccessor: this.yAccessor});
+    this.songs = this.mapDataService.data;
   }
 
   ngOnInit() {
