@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { D3HexbinService } from './layout/d3-hexbin.service';
-
+import 'rxjs/add/operator/filter';
 @Injectable()
 export class MapDataService {
 

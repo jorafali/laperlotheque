@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router'
 
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/mergeMap';
 
 import { AuthService } from '../../../lib/authentication/auth.service';
 import { MapDataService } from '../../../lib/map/map-data.service';

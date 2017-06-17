@@ -24,8 +24,8 @@ export class PopupComponent implements OnInit {
   @ViewChild('container') content: ElementRef;
 
   @HostListener('document:keydown', ['$event']) onEscapePressed = (event) => {
-    if ((event.which || event.keyCode) == 27){
-      this.closePopup()
+    if ((event.which || event.keyCode) === 27) {
+      this.closePopup();
     }
   }
   @HostListener('click') onclick(){
