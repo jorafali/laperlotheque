@@ -12,10 +12,10 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 })
 export class ZoomDirective {
 
-  @HostListener('mousemove', ['$event']) updateMouseCoordinates = (ev)=>{
+  @HostListener('mousemove', ['$event']) updateMouseCoordinates = (ev) => {
     let x, y;
-    x = (ev.clientX-this._zoomTransform.x)/this._zoomTransform.k;
-    y = (ev.clientY-this._zoomTransform.y)/this._zoomTransform.k;
+    x = (ev.offsetX - this._zoomTransform.x) / this._zoomTransform.k;
+    y = (ev.offsetY - this._zoomTransform.y) / this._zoomTransform.k;
     this._subjects.zoomMouseCoordinates.next([x, y]);
     this._mouseCoordinates = [x,y];
   };
@@ -24,7 +24,7 @@ export class ZoomDirective {
   private _subjects = {
     zoomTransform: new BehaviorSubject<ZoomTransform>(zoomIdentity),
     zoomMouseCoordinates: new BehaviorSubject<Array<number>>([0,0])
-  }
+  };
   public observables = {
     zoomTransform: this._subjects.zoomTransform.asObservable(),
     zoomMouseCoordinates: this._subjects.zoomMouseCoordinates.asObservable()
