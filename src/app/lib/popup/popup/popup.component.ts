@@ -28,8 +28,8 @@ export class PopupComponent implements OnInit {
       this.closePopup();
     }
   }
-  @HostListener('click') onclick(){
-    this.closePopup()
+  @HostListener('click') onclick() {
+    this.closePopup();
   }
 
   constructor(
