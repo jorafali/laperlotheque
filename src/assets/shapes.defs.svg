@@ -1,6 +1,6 @@
 <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
-	<circle id="circle" cx=".50" cy=".50" r=".50"></circle>
+	<circle id="circle" cx=".50" cy=".50" r=".40"></circle>
 	<rect id="square" x="0" y="0" width="1" height="1"></rect>
 </defs>
 </svg>
