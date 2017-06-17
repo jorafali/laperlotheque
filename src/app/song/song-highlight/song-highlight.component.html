@@ -1,4 +1,5 @@
-<div id="songDetailContainer" class="flex-container flex-dir-col">
+<div app-aside>
+<div id="songDetailContainer">
 		<div id="title" class="">
 			{{song.title}}
 		</div>
@@ -12,21 +13,9 @@
 			[style.background-position]="'center'"
 			[style.background-repeat]="'no-repeat'"
 			>
-
-			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-				id="playBtnOnPost"
-				class=""
-				(click)="play($event, song)"
-				width="32" 
-				height="32"
-				viewBox="0 0 32 32">
-				<circle cx="15" cy="16" r="15"></circle>
-				<path d="M8 5l20 11-20 11z" transform="translate(3 3)scale(0.8)"></path>
-			</svg>
 		</div>
-		<!-- <div id="highlightMenuContainer" class="flex-container"> -->			
-		<!-- </div> -->
 		<div id="descriptionContainer">
 			<pre>{{song.description}}</pre>
 		</div>
+</div>
 </div>

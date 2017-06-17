@@ -1,7 +1,5 @@
 :host {
 	height: auto;
-	width: 100%;
-	/* overflow-y: scroll; */
 }
 pre {
     white-space: pre-wrap;       /* Since CSS 2.1 */
@@ -12,7 +10,6 @@ pre {
 }
 #songDetailContainer {
 	height: 100%;
-	width: 100%;
 }
 	#artist {
 		width: auto;
@@ -37,37 +34,7 @@ pre {
 	}
 #thumbnailContainer {
 	height: 300px;
-	width: 100%;
-}
-#playBtnOnPost {
-	height: 50px;
-	width: auto;
-	visibility: hidden;
-}
-#thumbnailContainer:hover > #playBtnOnPost {
-	visibility: visible;
-}
-#playBtnOnPost circle{
-	-webkit-transition: fill 300ms ease-out;
-    -moz-transition: fill 300ms ease-out;
-    -o-transition: fill 300ms ease-out;
-    transition: fill 300ms ease-out;
-	fill: #000;
-	/* fill-opacity: .5; */
-}
-#playBtnOnPost path{
-	-webkit-transition: fill 300ms ease-out;
-    -moz-transition: fill 300ms ease-out;
-    -o-transition: fill 300ms ease-out;
-    transition: fill 300ms ease-out;
-	fill: #fffc75;
-	/* fill-opacity: .5; */
-}
-#playBtnOnPost:hover circle{
-	fill: #fffc75;
-}
-#playBtnOnPost:hover path{
-	fill: #000;
+	width: 300px;
 }
 #descriptionContainer {
 	margin: 25px 0px 25px 0px;

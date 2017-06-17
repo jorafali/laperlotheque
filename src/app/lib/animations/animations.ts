@@ -1,6 +1,6 @@
-import { trigger, state, animate, transition, style, query } from '@angular/animations';
+import { animation, trigger, state, animate, transition, style, query } from '@angular/animations';
 
-export const FadeIn = 
+export const FadeIn =
 trigger('fadeIn', [
   state('void', style({
     opacity: 0
@@ -11,11 +11,14 @@ trigger('fadeIn', [
   transition(':enter', [
     animate('.5s 0s ease')
   ])
-])
+]);
 
-export const FadeOut = 
+export const FadeOut =
 trigger('fadeOut', [
   state('void', style({
+    opacity: 0
+  })),
+  state('fadeOut', style({
     opacity: 0
   })),
   state('*', style({
@@ -23,7 +26,9 @@ trigger('fadeOut', [
   })),
   transition(':leave', [
     animate('.3s 0s ease')
-  ])
+  ]),
+  transition('* => fadeOut',
+    animate('1s 0s ease'))
 ])
 
 export const SlideUpIn =
@@ -36,8 +41,8 @@ trigger('slideUpIn', [
   })),
   transition(':enter', [
     animate('.3s 0s ease')
-  ])  
-])
+  ])
+]);
 
 export const SlideUpOut =
 trigger('slideUpOut', [
@@ -52,10 +57,58 @@ trigger('slideUpOut', [
       position: 'fixed'
     }),
     animate('.3s 0s ease')
-  ])  
-])
+  ])
+]);
 
-export const SlideDownOut = 
+
+export const SlideLeftIn =
+trigger('slideLeftIn', [
+  state('void', style({
+    display: 'block',
+    transform: 'translateX(100%)',
+    position: 'fixed',
+    right: '0px'
+  })),
+  state('*', style({
+    display: 'block',
+    transform: 'translateX(0)',
+    position: 'fixed',
+    right: '0px'
+  })),
+  transition(':enter', [
+    animate('.3s 0s ease')
+  ])
+]);
+
+export const SlideRightOut =
+trigger('slideRightOut', [
+  state('*', style({
+    display: 'block',
+    transform: 'translateX(0)',
+    position: 'fixed',
+    right: '0px'
+  })),
+  state('void', style({
+    display: 'block',
+    transform: 'translateX(100%)',
+    position: 'fixed',
+    right: '0px'
+  })),
+  state('rightOut', style({
+    display: 'block',
+    transform: 'translateX(100%)',
+    position: 'fixed',
+    right: '0px'
+  })),
+  transition('* => void', [
+    animate('.3s 0s ease')
+  ]),
+  transition( '* => rightOut', [
+    animate('.3s 0s ease')
+  ])
+]);
+
+export const SlideDownOut =
 trigger('slideDownOut', [
   state('void', style({
     position: 'fixed',

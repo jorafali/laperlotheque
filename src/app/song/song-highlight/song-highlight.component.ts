@@ -6,8 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { SongService } from '../song.service';
 import { Song } from '../song';
-import { PlaylistControlService } from '../../lib/soundplayer/playlist-control.service'
-
+import { PlaylistControlService } from '../../lib/soundplayer/playlist-control.service';
 
 @Component({
   templateUrl: './song-highlight.component.html',
@@ -15,27 +14,26 @@ import { PlaylistControlService } from '../../lib/soundplayer/playlist-control.s
 })
 export class SongHighlightComponent implements OnInit {
 
-	song: Song;
+  public song: Song;
 
   constructor(
-  	private router: Router, 
-  	private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private playlistControlService: PlaylistControlService ) { }
 
   play = (event: MouseEvent, song) => {
     // stop bubbling of click event
     event.stopPropagation();
-
     // console.log('attempted play song')
     this.playlistControlService.playSongNow(song);
-  };
+  }
 
   ngOnInit() {
     this.activatedRoute.data
-      .subscribe((data: {song: Song})=>{
+      .subscribe((data: {song: Song}) => {
         this.song = data.song;
         console.log('song highlight\'s song is now :', this.song);
-      })
+      });
   }
 
 }

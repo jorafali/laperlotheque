@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { PopupModule } from '../lib/popup/popup.module';
+import { SliderAsideModule } from '../lib/slider-aside/slider-aside.module';
 import { D3MapModule } from '../lib/map/map.module';
 
 import { SongService, SongResolveService } from './song.service';
@@ -18,8 +19,18 @@ import { UploadThumbnailFileComponent } from './upload-song/upload-thumbnail-fil
 import { SongItemsComponent } from './song-items/song-items.component';
 import { AddSongComponent } from './upload-song/add-song/add-song.component';
 import { SongItemComponent } from './song-item/song-item.component';
+import { SongHighlightComponent } from './song-highlight/song-highlight.component';
+
 
 const songRoutes: Routes = [
+  {
+    path: ':id',
+    component: SongHighlightComponent,
+    resolve: {
+      song: SongResolveService
+    },
+    outlet: 's'
+  },
   {
     path: 'edit',
     outlet: 'p',
@@ -34,7 +45,7 @@ const songRoutes: Routes = [
       }
     ]
   }
-]
+];
 
 @NgModule({
   imports: [
@@ -42,6 +53,7 @@ const songRoutes: Routes = [
     FormsModule,
     RouterModule.forChild(songRoutes),
     PopupModule,
+    SliderAsideModule,
     D3MapModule
   ],
   declarations: [
@@ -52,7 +64,8 @@ const songRoutes: Routes = [
     UploadThumbnailFileComponent,
     SongItemsComponent,
     AddSongComponent,
-    SongItemComponent],
+    SongItemComponent,
+    SongHighlightComponent],
   exports: [
     UploadSongComponent,
     SongTileComponent,
@@ -61,12 +74,13 @@ const songRoutes: Routes = [
     UploadThumbnailFileComponent,
     SongItemsComponent,
     AddSongComponent,
-    SongItemComponent],
+    SongItemComponent,
+    SongHighlightComponent],
   providers: [
-    SongService, 
+    SongService,
     SongResolveService,
-    EditSongControlService, 
-    EditSongIdParamResolveService, 
+    EditSongControlService,
+    EditSongIdParamResolveService,
     MetricsService
   ]
 })

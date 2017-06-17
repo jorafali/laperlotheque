@@ -15,13 +15,14 @@
 
 	(click)="navigateToEdit()"></svg:rect>
 <svg:image
-[style.clip-path]="'url(#bla'+song[0].id+')'"
-[attr.href]="song[0].thumbnailUrl"
-[attr.x]="song.x-100"
-[attr.y]="song.y-100"
-width="200"
-height="200"
-preserveAspectRatio="xMidYMid slice"
+	[style.clip-path]="'url(#bla'+song[0].id+')'"
+	[attr.href]="song[0].thumbnailUrl"
+	[attr.x]="song.x-100"
+	[attr.y]="song.y-100"
+	width="200"
+	height="200"
+	preserveAspectRatio="xMidYMid slice"
 
-(click)="navigateToEdit($event,song[0].id)"></svg:image>
-<!-- SOME SONG BEHAVIOR -->
+	(click)="play($event, song[0])"
+	(contextmenu)="navigateToSongHighlight($event, song[0].id)">
+</svg:image>
