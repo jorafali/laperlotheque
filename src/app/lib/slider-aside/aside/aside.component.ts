@@ -22,9 +22,9 @@ export class AsideComponent implements OnInit {
   public here = true;
 
   @HostListener('document:keydown', ['$event']) onEscapePressed = (event) => {
-    if ((event.which || event.keyCode) === 27){
+    if ((event.which || event.keyCode) === 27) {
       this.animateIt();
-      setTimeout(()=>{this.closeAside()}, 300)
+      setTimeout(() => { this.closeAside(); }, 300);
     }
   }
 
