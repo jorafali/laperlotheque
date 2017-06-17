@@ -7,9 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SongItemsComponent implements OnInit {
 
-	@Input('song-items-data') songs: Array<any>
+@Input('song-items-data') songs: Array<any>;
 
-  constructor(){}
+  constructor() { }
 
   ngOnInit() {
   }
