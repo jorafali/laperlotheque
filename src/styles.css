@@ -23,6 +23,7 @@
     font-family: montserratRegular;
     src: url("./assets/montserrat/Montserrat-Regular.otf");
 } */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 html, body {
 	height: 100%;
   	min-height: 100%;
