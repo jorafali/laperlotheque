@@ -66,12 +66,11 @@ export class SoundplayerComponent implements OnInit, OnChanges {
 
   addSongToPlaylist = (song: Song) => {
     this.playlistControlService.addSongToPlaylist(song);
-  };
+  }
 
-  jumpToPosition = (e) => {
-    let jumpToPercentage = e.offsetX / e.target.clientWidth;
-    this.playlistControlService.jumpToPosition(jumpToPercentage);
-  };
+  jumpToPosition = (decimal) => {
+    this.playlistControlService.jumpToPosition(decimal);
+  }
 
   removeSongFromPlaylist = () => {};
 

@@ -1,29 +1,29 @@
 :host {
 	padding: 0px;
-	height: 30px;
+	margin: 0px;
+	width: 100%;
+	height: 40px;
 	background-color: rgba(255,255,255, 0.7);
-	/* transition: transform .5s ease; */
-	/* display: none; */
-}
-:host.playing {
-	/* display: flex; */
 }
 #playerContainer {
-	display: flex;
-	/* center the flex way*/
-	align-items: center;
-	justify-content: center;
-	justify-items: center;
-
-	/* border-top: 1px solid black; */
-	padding: 0px;
 	height: 100%;
+	width: 100%;
+	/*background-color: tomato;*/
 }
-
+#song-progressContainer {
+	/*background-color: lightblue;*/
+	position: absolute;
+	top: -10px;
+	height: 20px;
+	width: 100%;	
+}
+	div[app-song-progress-bar]{
+		
+	}
 #mainPlayerControlContainer {
-	flex: none;
-	width: 100px;
+	flex: 0 0 auto;
 	height: 100%;
+	width: 100px;
 }
 	.icon#play, .icon#pause {
 		height: 30px;
@@ -33,12 +33,14 @@
 	}
 
 #playerInfoContainer {
+	position: relative;
+	/*background-color: lightgray;*/
 	color: black;
-	flex-grow: 1;
+	flex: 1 1 auto;
 	height: 100%;
 }
 #secondaryPlayerControlContainer {
-	flex-grow: 1 1;
+	flex-grow: 1 1 auto;
 	width: 50px;
 	height: 100%;
 }
@@ -51,12 +53,6 @@
 	visibility: visible;
 	cursor: grab;
 }
-/* #song-info{
-	height: 100%;
-	flex-basis: 40%;
-	align-items: center;
-	padding: 0px 15px 0px 15px ;
-} */
 	#song-title {
 		flex: 1 1 20%;
 		height: 50%;
@@ -72,34 +68,6 @@
 		white-space: nowrap;
 		text-overflow: ellipsis;
 	}
-	#song-progressContainer {
-		height: 100%;
-		flex: 0 0 50%;
-		padding: 0px 15px 0px 15px ;
-	}
-		#song-position {
-			width: 60px;
-		}
-		#song-progress-barContainer {
-			flex: 1 0 50%;
-			background-color: grey;
-			border-radius: 2px;
-			height: 4px;
-			justify-content: flex-start;
-		}
-		#song-progress-barContainer:hover {
-			border: 1px solid black;
-			cursor: pointer;
-		}
-		#song-duration{
-			width: 60px;
-		}
-		#song-progress-bar {
-			background-color: #fffc75;
-			border-radius: 2px;
-			height: 3px;
-			pointer-events: none;
-		}
 .img-fluid {
 	height: 80%;
 	width: auto;

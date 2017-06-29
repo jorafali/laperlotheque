@@ -1,48 +1,48 @@
-<div id="playerContainer" class="flex-center">
+<div id="playerContainer" class="">
 	<!-- Player main controls -->
-	<div id="mainPlayerControlContainer" class="flex-center">
-		<div [ngSwitch]="songPlaying.soundObject.paused"
-			class="flex-center">
-			<div
-				*ngSwitchCase="false"
-				(click)="pause()">
-				ON AIR :</div>
-			<div
-				*ngSwitchCase="true"
-				(click)="play(songPlaying)">
-				OFF AIR :</div>
-		</div>
-	</div>
-	<!-- player song information -->
-	<div id="playerInfoContainer" class="flex-center">
-		<div id="song-title" 
-			class="flex-center">
-			{{songPlaying.title}}
-		</div>
-		<div id="song-artist" class="flex-center">
-			{{songPlaying.artist}}
-		</div>
-		<img *ngIf="songPlaying.thumbnailUrl" 
-			class ="img-fluid" 
-			src="{{songPlaying.thumbnailUrl}}">
-		<div id="song-progressContainer" class="flex-center">
-			<div id="song-position" class="flex-center">
-				{{songPlaying.humanReadable.position}}
+	<div style="height:100%" class="flex-center">
+		<div id="mainPlayerControlContainer" class="flex-center">
+			<div [ngSwitch]="songPlaying.soundObject.paused"
+				class="flex-center">
+				<div
+					*ngSwitchCase="false"
+					(click)="pause()">
+					ON AIR :</div>
+				<div
+					*ngSwitchCase="true"
+					(click)="play(songPlaying)">
+					OFF AIR :</div>
 			</div>
-			<div id="song-progress-barContainer" class=""
-				(click)="jumpToPosition($event)">
-				<div id="song-progress-bar"
-					[style.width]="songPlaying.soundObject.position/songPlaying.soundObject.duration*100+'%'">
+		</div>
+		<div id="song-position" class="flex-center">
+			{{songPlaying.humanReadable.position}}
+		</div>
+		<!-- player song information -->
+		<div id="playerInfoContainer" class="flex-center">
+			<div id="song-progressContainer" class="flex-center">
+				<div app-song-progress-bar 
+					[value]="songPlaying.soundObject.position/songPlaying.soundObject.duration"
+					(input)="jumpToPosition($event)">
 				</div>
 			</div>
-			<div id="song-duration" class="flex-center">
-				{{songPlaying.humanReadable.duration}}
-			</div>			
+			<div id="song-title" 
+				class="flex-center">
+				{{songPlaying.title}}
+			</div>
+			<img *ngIf="songPlaying.thumbnailUrl" 
+				class="img-fluid" 
+				src="{{songPlaying.thumbnailUrl}}">
+			<div id="song-artist" class="flex-center">
+				{{songPlaying.artist}}
+			</div>
 		</div>
-	</div>
-	<!-- player second set of controls -->
-	<div id="secondaryPlayerControlContainer" class="flex-center">
-		M
+		<div id="song-duration" class="flex-center">
+			{{songPlaying.humanReadable.duration}}
+		</div>
+		<!-- player second set of controls -->
+		<div id="secondaryPlayerControlContainer" class="flex-center">
+			M
+		</div>
 	</div>
 
 </div>

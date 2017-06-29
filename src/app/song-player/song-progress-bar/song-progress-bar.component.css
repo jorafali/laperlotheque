@@ -1,0 +1,32 @@
+:host {
+    height: 100%;
+    width: 100%;
+    /*background-color: lightgreen;*/
+}
+:host:hover {
+    cursor: pointer;
+}
+#song-progress-barContainer {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 50%;
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+#song-progress-bar {
+    height: 20px;
+    border-right: 1px solid black;
+    pointer-events: none;
+    transition: height .3s ease;
+}
+:host:hover #song-progress-bar {
+    height: 30px;
+}
+#mouseover-thumb {
+    position: absolute;
+    top: 0px;
+    height: 30px;
+    border-right: 1px solid black;
+    pointer-events: none;
+}

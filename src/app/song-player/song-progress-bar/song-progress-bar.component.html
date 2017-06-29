@@ -1,0 +1,9 @@
+<div #sliderBar id="song-progress-barContainer" class="">
+    <div #sliderProgress id="song-progress-bar"
+        [style.width]="value*100+'%'">
+    </div>
+    <div #sliderProgressOnMouseOver id="mouseover-thumb"
+        *ngIf="_mouseoverThumbWidth"
+        [style.width]="_mouseoverThumbWidth+'%'">
+    </div>
+</div>
