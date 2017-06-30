@@ -18,7 +18,9 @@ import { SoundplayerModule } from './lib/soundplayer/soundplayer.module';
 import { SongPlayerModule } from './song-player/song-player.module';
 
 
-const appRoutes: Routes = [];
+const appRoutes: Routes = [
+  {path: '', redirectTo: '/map', pathMatch: 'full'}
+];
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ const appRoutes: Routes = [];
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    // custom moduels
+    // custom modules
     // libs
     AuthenticationModule,
     D3MapModule,
