@@ -56,14 +56,14 @@ export class PlaylistControlService implements PlaylistControl {
   	}
 
 	// service method to stream songs
-	addSongToPlaylist = (song: Track)=> {
+	addSongToPlaylist = (song: Track) => {
 		console.log('adding song to playlist :', song);
-		let isSongInPlaylist = this.playlist.find((element: Track)=>{return element.id == song.id})
+		const isSongInPlaylist = this.playlist.find((element: Track) => {return element.id === song.id; });
 	    if (!isSongInPlaylist) {
 			this.playlist.push(song);
 			this.addSongToPlaylistSubject.next(this.playlist);
-			console.log('playlist now is :',this.playlist);
-	    } else {console.log('already in playlist')};
+			console.log('playlist now is :', this.playlist);
+	    } else {console.log('already in playlist'); };
 	};
 
 	removeSongFromPlaylist = (song: Track) => {

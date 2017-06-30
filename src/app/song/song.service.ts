@@ -40,8 +40,23 @@ export class SongService {
     )
   }
 
-  public getSongs(filter?): Observable<Song[]> {
-    const observable = this.http.get(`api/songs`)
+  public getSongs(): Observable<Song[]> {
+    const observable = this.http.get('api/songs')
+      .map((r: Response) => {
+        const jsonResp = r.json() as Array<any>;
+        const resp = [];
+        jsonResp.forEach((val, i, arr) => {
+          const aSong: Song = this.newSong(val);
+          resp.push(aSong);
+        });
+        // console.log('fetched some songs',resp);
+        return resp;
+      });
+    return observable;
+  }
+
+  public getSongsById(ids: Array<any>): Observable<Song[]> {
+    const observable = this.http.get('api/songs', {params: {filter: {where: {id:{inq: ids}}}}})
       .map((r: Response) => {
         const jsonResp = r.json() as Array<any>;
         const resp = [];
@@ -61,7 +76,7 @@ export class SongService {
     const observable = this.http.get('api/songs/' + id, {search: searchParams})
       .map((r: Response) => {
         const resp = this.newSong(r.json());
-        console.log(resp);
+        // console.log(resp);
         return resp;
       });
     return observable;
@@ -86,7 +101,7 @@ export class SongService {
     let observable: Observable<Song>;
 
     if (typeof audioFile === 'undefined' || audioFile === null) {
-       console.log('no audio to upload');
+      //  console.log('no audio to upload');
        return Observable.throw('no files to upload');
     }
 
@@ -209,7 +224,7 @@ export class SongResolveService implements Resolve<Observable<Song>>{
 
     return this.songService.getSong(route.params['id'])
       .catch(error => {
-        console.log('could not resolve song with route param', error);
+        // console.log('could not resolve song with route param', error);
         this.router.navigate(['']);
         return Observable.of(null);
       });

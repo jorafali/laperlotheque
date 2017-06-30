@@ -1,0 +1,10 @@
+:host{
+    color: white;
+    white-space: nowrap;
+    overflow-y: scroll;
+}
+img {
+    display: inline-block;
+    height: 100%;
+    width: auto;
+}

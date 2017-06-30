@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { PopupModule } from '../lib/popup/popup.module';
-import { SliderAsideModule } from '../lib/slider-aside/slider-aside.module';
 import { D3MapModule } from '../lib/map/map.module';
 
 import { SongService, SongResolveService } from './song.service';
@@ -23,14 +22,6 @@ import { SongHighlightComponent } from './song-highlight/song-highlight.componen
 
 
 const songRoutes: Routes = [
-  {
-    path: ':id',
-    component: SongHighlightComponent,
-    resolve: {
-      song: SongResolveService
-    },
-    outlet: 's'
-  },
   {
     path: 'edit',
     outlet: 'p',
@@ -53,7 +44,6 @@ const songRoutes: Routes = [
     FormsModule,
     RouterModule.forChild(songRoutes),
     PopupModule,
-    SliderAsideModule,
     D3MapModule
   ],
   declarations: [

@@ -40,9 +40,11 @@
 			{{songPlaying.humanReadable.duration}}
 		</div>
 		<!-- player second set of controls -->
-		<div id="secondaryPlayerControlContainer" class="flex-center">
+		<div id="secondaryPlayerControlContainer" class="flex-center"
+			(click)="togglePlaylistDisplay()">
 			M
 		</div>
 	</div>
-
+	<div id="playlist" app-playlist>
+	</div>
 </div>
