@@ -33,7 +33,7 @@ export class MapDataService {
 						this._data.push(datum);
 					}
 				}
-				console.log('_data :', this._data);
+				// console.log('_data :', this._data);
 			})
 			.map((data)=>{
 				let newData = this.layoutData(data);
@@ -47,7 +47,7 @@ export class MapDataService {
 						this.data.push(datum);
 					}
 				}
-				console.log('data :', this.data);
+				// console.log('data :', this.data);
 				return newData
 			})
 	}
