@@ -59,7 +59,7 @@ constructor(
 public navigateToSongHighlight = (event: MouseEvent, songId) => {
   console.log(songId);
   event.stopPropagation();
-  this.router.navigate([{outlets: {s: [this.song[0].id]}}]);
+  // this.router.navigate([{outlets: {p: [this.song[0].id]}}]);
   return false;
 }
 
