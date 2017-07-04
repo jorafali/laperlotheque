@@ -29,7 +29,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.mapDataService.observables.newData.subscribe(newData=>{
-      console.log('some data has been amended into map data :', newData);
+      // console.log('some data has been amended into map data :', newData);
       // need to reload the corresponding components
     });
 

@@ -1,11 +1,10 @@
 :host {
-	/* background-color: tomato; */
+	position: relative;
 	min-height: 100%;
 	min-width: 100%;
-	z-index: -1;
 }
 svg#root {
-	height: 100vh;
-	width: 100vw;
-	/* background-color: grey; */
+	position: absolute;
+	height: 100%;
+	width: 100%;
 }

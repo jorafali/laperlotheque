@@ -12,7 +12,7 @@ import { SongModule } from '../song/song.module';
 
 const mapRoutes: Routes = [
   {
-    path: '',
+    path: 'map',
     component: MapComponent
   }
 ]
@@ -25,7 +25,7 @@ const mapRoutes: Routes = [
     RouterModule.forChild(mapRoutes)
   ],
   exports: [
-  	MapComponent
+    MapComponent
   ],
   declarations: [
     MapComponent
