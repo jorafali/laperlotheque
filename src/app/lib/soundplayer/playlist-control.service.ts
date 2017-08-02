@@ -44,20 +44,24 @@ export class PlaylistControlService implements PlaylistControl {
 	  				// when songPlaying is streamed from player, set _songPlaying to new value
 					this._songPlaying = songPlaying;
 				},
-				error => {console.log('error observing playerService.songPlaying from playlist control'); },
+				error => {
+					console.log('error observing playerService.songPlaying from playlist control'); 
+				},
 				() => {}
 			);
 	}
 
 	// service method to stream songs
 	addSongToPlaylist = (song: PlaylistSong) => {
-		console.log('adding song to playlist :', song);
+		// console.log('adding song to playlist :', song);
 		const isSongInPlaylist = this._playlist.find((element: Track) => {return element.id === song.id; });
 		if (!isSongInPlaylist) {
 			this._playlist.push(song);
 			this._addSongToPlaylistSubject.next(this._playlist);
-			console.log('playlist now is :', this._playlist);
-		} else {console.log('already in playlist'); };
+			// console.log('playlist now is :', this._playlist);
+		} else {
+			console.log('already in playlist');
+		};
 	}
 
 	removeSongFromPlaylist = (song: Track) => {
@@ -85,13 +89,13 @@ export class PlaylistControlService implements PlaylistControl {
 	}
 
 	playNextInPlaylist = () => {
-		console.log('playing next song');
+		// console.log('playing next song');
 		if ( this._playlist.length === 0 ) {
 			console.log('empty playlist');
 			return;
 		}
 		const currentSongIndex = this._playlist.findIndex((song, idx, arr) => {
-			return this._songPlaying.id = song.id;
+			return this._songPlaying.id === song.id;
 		});
 		if ( currentSongIndex >= 0 && currentSongIndex !== this._playlist.length - 1) {
 			this.playSongNow(this._playlist[currentSongIndex + 1] );
@@ -101,17 +105,17 @@ export class PlaylistControlService implements PlaylistControl {
 	}
 
 	playPreviousInPlaylist = () => {
-		console.log('playing previous song');
+		// console.log('playing previous song in playlist :', this._playlist);
 		if ( this._playlist.length === 0 ) {
 			console.log('empty playlist');
 			return;
 		}
 		const currentSongIndex = this._playlist.findIndex((song, idx, arr) => {
-			return this._songPlaying.id = song.id;
+			return this._songPlaying.id === song.id;
 		});
-		console.log('index', currentSongIndex);
+		// console.log('current index', currentSongIndex);
 		if ( currentSongIndex > 0 ) {
-			this.playSongNow(this._playlist[currentSongIndex - 1] );
+			this.playSongNow( this._playlist[currentSongIndex - 1] );
 		} else {
 			console.log('no previous song to play in playlist');
 		}
