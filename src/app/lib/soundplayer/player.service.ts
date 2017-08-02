@@ -9,99 +9,115 @@ declare var soundManager: any;
 @Injectable()
 export class PlayerService implements Player {
 
-	public songPlaying: any;
-	readonly defaultSoundObject = {position: 0, duration:1, paused: true, muted: false} ; 
-	readonly defaultHumanReadable = {position: '0:00', duration: '0:00'} ;
-
-	private muted: boolean = false;
+	private _songPlaying: any;
+	private _muted: boolean;
 	// observable soundObject subject
-	private songPlayingSubject: Subject<any> = new Subject<any>();
+	private _songPlayingSubject: BehaviorSubject<any>;
+
+	readonly defaultSoundObject = {position: 0, duration: 1, paused: true, muted: false};
+	readonly defaultHumanReadable = {position: '0:00', duration: '0:00'};
 
 	// observable soundObject stream
-	public observables = {
-		songPlaying: this.songPlayingSubject.asObservable()
-	}
+	public observables: {
+		songPlaying
+	};
 
-	constructor() { 
-
+	constructor() {
 		soundManager.setup({
 			url: 'https://cdnjs.cloudflare.com/ajax/libs/soundmanager2/2.97a.20150601/swf/soundmanager2.swf'
 		});
 
-		this.songPlaying = {
+		this._muted = false;
+
+		this._songPlaying = {
 			soundObject: this.defaultSoundObject,
 			humanReadable: this.defaultHumanReadable
+		};
+		this._songPlayingSubject = new BehaviorSubject<any>(this._songPlaying);
+		this.observables = {
+			songPlaying: this._songPlayingSubject.asObservable()
 		};
 	};
 
 	// this method plays a song
-	play = (song: Track)=>{
+	play = (song: Track) => {
 		// retrieve or creates the soundObject
 		try {
 			this.initSong(song);
 			// then plays the soundObject
-			this.songPlaying.soundObject.play();
+			this._songPlaying.soundObject.play();
 		} catch (e) {
 			if (e instanceof TypeError) {
 				console.log('not a valid song to playerService.play')
 				throw e;
 			} else {
 				throw e;
-				
 			}
 		}
-	};
+	}
 
 	// this method pauses a song
 	pause = () => {
-		if (this.songPlaying.soundObject){
-			this.songPlaying.soundObject.pause();
+		if (this._songPlaying.soundObject) {
+			this._songPlaying.soundObject.pause();
 		}
-	};
+	}
 
 	togglePause = () => {
-		if (this.songPlaying.soundObject){
-			this.songPlaying.soundObject.togglePause();
+		if (this._songPlaying.soundObject){
+			this._songPlaying.soundObject.togglePause();
 		}
-	};
+	}
+
+	// this method stops the current song
+	stop = () => {
+		// if a song is already loaded, stops playing it
+		if (this._songPlaying.soundObject) {
+			this._songPlaying.soundObject.stop();
+			console.log('player stopped the current song');
+		}
+	}
 
 	toggleMute = () => {
-		if(this.muted){
+		if (this._muted) {
 			soundManager.unmute();
 		} else {
 			soundManager.mute();
 		}
-		this.muted = !this.muted
-	};
+		this._muted = !this._muted;
+	}
 
 	setVolume = (value: number) => {
-		if (this.songPlaying.soundObject){
-			if (value<0) {value==0}
-			else if (value>100) {value==100};
-			this.songPlaying.soundObject.setVolume(value);
+		if (this._songPlaying.soundObject) {
+			if (value < 0) {
+				value = 0;
+			} else if (value > 100) {
+				value = 100;
+			};
+			this._songPlaying.soundObject.setVolume(value);
 		} else {
 			soundManager.setVolume(value);
 		}
 	}
 
 	jumpToPosition = (decimal: number) => {
-		if (this.songPlaying.soundObject){
+		if (this._songPlaying.soundObject) {
 			console.log('changing position');
-			let position = Math.round(this.songPlaying.soundObject.duration*decimal);
+			const position = Math.round(this._songPlaying.soundObject.duration * decimal);
 			console.log(position);
-			soundManager.setPosition(this.songPlaying.soundObject.id, position);
+			soundManager.setPosition(this._songPlaying.soundObject.id, position);
 		}
-	};
+	}
 
-	private initSong = (song: Track) => {
-		if (!song.id){
+	private initSong = (song: Track): any => {
+		if (!song.id) {
 			console.log('not a valid song');
 			throw new TypeError('not a valid song, the song must have an id property');
 		} else if (!song.trackUrl){
 			console.log('not a valid song');
 			throw new TypeError('not a valid song, the song must have a trackUrl property');
 		}
-		//pause currently playing song
+		// pause currently playing song
 		soundManager.pauseAll();
 		// try to fetch requested song if it is already loaded
 		let soundObject = soundManager.getSoundById(song.id);
@@ -110,48 +126,38 @@ export class PlayerService implements Player {
 		if (!soundObject) {
 			console.log('creating soundObject');
 
-			var songUrl = song.trackUrl;
+			const songUrl = song.trackUrl;
 			soundObject = soundManager.createSound({
-				id:song.id,
+				id: song.id,
 				url: songUrl,
 				stream: true,
-				onload: (flag)=>{
-					if (!flag){
-						console.log('cannot load');
+				onload: (flag) => {
+					if (!flag) {
+						alert('sound cannot load');
 						soundManager.destroySound(song.id);
 					}
 				},
 				whileplaying: () => {
-					this.songPlaying.humanReadable.duration = this.millisecondsToHumanReadable(this.songPlaying.soundObject.duration);
-					this.songPlaying.humanReadable.position = this.millisecondsToHumanReadable(this.songPlaying.soundObject.position);
-					this.songPlayingSubject.next(this.songPlaying);
+					this._songPlaying.humanReadable.duration = this.millisecondsToHumanReadable(this._songPlaying.soundObject.duration);
+					this._songPlaying.humanReadable.position = this.millisecondsToHumanReadable(this._songPlaying.soundObject.position);
+					this._songPlayingSubject.next(this._songPlaying);
 				}
 			})
 		}
 		// set current songPlaying
-
-		this.songPlaying = song;
-		this.songPlaying.soundObject = soundObject;
-		this.songPlaying.humanReadable = this.defaultHumanReadable;
-	};
-
-	// this method stops the current song
-	private stop = ()=> {
-		// if a song is already loaded, stops playing it
-		if (this.songPlaying.soundObject) {
-			this.songPlaying.soundObject.stop();
-			console.log('player stopped the current song');
-		}
-	};
+		this._songPlaying = song;
+		this._songPlaying.soundObject = soundObject;
+		this._songPlaying.humanReadable = this.defaultHumanReadable;
+	}
 
 	private millisecondsToHumanReadable = (millisec: number) => {
-	    let humanReadable: string;
-	    let hr: number = Math.floor((((millisec/1000) % 31536000) % 86400) / 3600);
-	    let min: number = Math.floor(((((millisec/1000) % 31536000) % 86400) % 3600) / 60);
-	    let sec: number = Math.round(((((millisec/1000) % 31536000) % 86400) % 3600) % 60);
+		let humanReadable: string;
+		const hr: number = Math.floor((((millisec / 1000) % 31536000) % 86400) / 3600);
+		const min: number = Math.floor(((((millisec / 1000) % 31536000) % 86400) % 3600) / 60);
+		const sec: number = Math.round(((((millisec / 1000) % 31536000) % 86400) % 3600) % 60);
 
-	    humanReadable = min+':'+((sec<10)? '0'+sec:sec).toString();
-	    return humanReadable
-	  }
+		humanReadable = min + ':' + ((sec < 10) ? '0' + sec : sec).toString();
+		return humanReadable;
+	}
 
 }

@@ -7,6 +7,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
+// Services 
+import { ErrorHandlerService } from './lib/error-handler/error-handler.service';
+
 // Custom modules
 // LIB
 import { AuthenticationModule } from './lib/authentication/authentication.module';
@@ -19,29 +22,29 @@ import { SongPlayerModule } from './song-player/song-player.module';
 
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/map', pathMatch: 'full'}
+	{path: '', redirectTo: '/map', pathMatch: 'full'}
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpModule,
-    RouterModule.forRoot(appRoutes),
-    // custom modules
-    // libs
-    AuthenticationModule,
-    D3MapModule,
-    // features
-    MapModule,
-    SoundplayerModule,
-    SongPlayerModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent
+	],
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
+		FormsModule,
+		HttpModule,
+		RouterModule.forRoot(appRoutes),
+		// custom modules
+		// libs
+		AuthenticationModule,
+		SoundplayerModule,
+		D3MapModule,
+		// features
+		MapModule,
+		SongPlayerModule
+	],
+	providers: [ErrorHandlerService],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

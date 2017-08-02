@@ -1,11 +1,11 @@
-import {Observable} from 'rxjs/Observable'
+import {Observable} from 'rxjs/Observable';
 
 export interface Track {
 	id: any;
 	trackUrl: string;
 }
 
-export interface Player { 
+export interface Player {
 	play (song: Track): void;
 	pause (): void;
 	togglePause (): void;
@@ -14,8 +14,13 @@ export interface Player {
 	jumpToPosition (percent: number): void;
 }
 
-export interface PlaylistControl { 
-	playlist: Array<Track>;
+export interface PlaylistSong extends Track {
+	title: string;
+	artist: string;
+	thumbnailUrl?: string;
+}
+
+export interface PlaylistControl {
 	observables: {
 		playlist: Observable<Array<Track>>,
 		songPlaying: Observable<Track>
@@ -32,5 +37,7 @@ export interface PlaylistControl {
 	setVolume (value: number): void;
 	toggleRepeat? (): void;
 	toggleAutoNext? (): void;
-
 }
+
+// tslint:disable-next-line:no-empty-interface
+export interface SoundObject {}
