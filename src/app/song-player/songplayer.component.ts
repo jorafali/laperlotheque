@@ -16,7 +16,7 @@ export class SongplayerComponent implements OnInit {
 	@Input('app-songplayer') songPlaying: any;
 	public playlist: Observable<Array<PlaylistSong>>;
 
-	@HostBinding('class.displayPlaylist') private _displayPlaylist = true;
+	@HostBinding('class.hidePlaylist') private _hidePlaylist = false;
 
   // THIS CONSTRUCTOR registers observers on the playlist-control published streams
   /*
@@ -28,7 +28,7 @@ export class SongplayerComponent implements OnInit {
 	}
 
 	togglePlaylistDisplay = () => {
-		this._displayPlaylist = !this._displayPlaylist;
+		this._hidePlaylist = !this._hidePlaylist;
 	}
 
 	play = (song: Song) => {
