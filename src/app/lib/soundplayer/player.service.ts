@@ -48,7 +48,7 @@ export class PlayerService implements Player {
 			this._songPlaying.soundObject.play();
 		} catch (e) {
 			if (e instanceof TypeError) {
-				console.log('not a valid song to playerService.play')
+				console.log('not a valid song to playerService.play');
 				throw e;
 			} else {
 				throw e;
@@ -142,12 +142,16 @@ export class PlayerService implements Player {
 					this._songPlaying.humanReadable.position = this.millisecondsToHumanReadable(this._songPlaying.soundObject.position);
 					this._songPlayingSubject.next(this._songPlaying);
 				}
-			})
+			});
+			// set current songPlaying
+			this._songPlaying = song;
+			// add created soundObject and default human readable progress markers to input song
+			this._songPlaying.soundObject = soundObject;
+			this._songPlaying.humanReadable = this.defaultHumanReadable;
+		} else {
+			// the song has already been created, just assigns current _songPlaying back to it
+			this._songPlaying = song;
 		}
-		// set current songPlaying
-		this._songPlaying = song;
-		this._songPlaying.soundObject = soundObject;
-		this._songPlaying.humanReadable = this.defaultHumanReadable;
 	}
 
 	private millisecondsToHumanReadable = (millisec: number) => {
