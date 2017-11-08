@@ -1,5 +1,13 @@
 import { animation, trigger, state, animate, transition, style, query } from '@angular/animations';
 
+export const FadeAnimation = animation([
+  style({
+    opacity: '{{ from }}'
+  }), animate('{{ time + method }}', style({
+    opacity: '{{ to }}'
+  }))
+], {params : {time: '.3s', method: 'ease'}});
+
 export const FadeIn =
 trigger('fadeIn', [
   state('void', style({

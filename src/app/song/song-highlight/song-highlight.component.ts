@@ -28,6 +28,12 @@ export class SongHighlightComponent implements OnInit {
     this.playlistControlService.playSongNow(song);
   }
 
+  @HostListener('document:keydown', ['$event']) onEscapePressed = (event) => {
+    if ((event.which || event.keyCode) === 27) {
+      this.router.navigate([{outlets: {s: null}}]);
+    }
+  }
+
   ngOnInit() {
     this.activatedRoute.data
       .subscribe((data: {song: Song}) => {

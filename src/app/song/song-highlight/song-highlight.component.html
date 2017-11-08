@@ -1,21 +1,23 @@
-<div app-aside>
+<menu>
+	{{song.title}}
+</menu>
 <div id="songDetailContainer">
-		<div id="title" class="">
-			{{song.title}}
-		</div>
-		<div id="artist" class="">
-			{{song.artist}}
-		</div>
-		<div id="thumbnailContainer"
-			class="flex-container flex-center-main"
-			[style.background-image]="'url('+song.thumbnailUrl+')'"
-			[style.background-size]="'cover'"
-			[style.background-position]="'center'"
-			[style.background-repeat]="'no-repeat'"
-			>
-		</div>
-		<div id="descriptionContainer">
-			<pre>{{song.description}}</pre>
-		</div>
-</div>
+	<div id="title" class="shadow">
+		{{song.title}}
+	</div>
+	<div id="artist" class="shadow">
+		{{song.artist}}
+	</div>
+	<div id="thumbnailContainer"
+		class="flex-container flex-center-main shadow"
+		[style.background-image]="'url('+song.thumbnailUrl+')'"
+		[style.background-size]="'cover'"
+		[style.background-position]="'center'"
+		[style.background-repeat]="'no-repeat'"
+		>
+	</div>
+	<div id="descriptionContainer" class="shadow" 
+		*ngIf="song.description">
+		<pre>{{song.description}}</pre>
+	</div>
 </div>
